@@ -1,11 +1,13 @@
 import { FaStripe } from "react-icons/fa";
 import { FaCcVisa } from "react-icons/fa";
 import { FaCcMastercard } from "react-icons/fa";
-import { IoCallOutline } from "react-icons/io5";
+import { IoCallSharp } from "react-icons/io5";
 import { FaFacebookF } from "react-icons/fa";
 import { FaTwitterSquare } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
+import { GoSmiley } from "react-icons/go";
+
 export default function Footer() {
   return (
     <section className="bg-black text-white p-6">
@@ -30,13 +32,12 @@ export default function Footer() {
           </ul>
         </nav>
         <section aria-labelledby="returns-refunds-heading">
-          <h3
-            id="returns-refunds-heading"
-            className="text-white-500 font-bold mb-4"
-          >
-            Returns & Refunds
-          </h3>
           <ul>
+            <li>
+              <a href="#" className="hover:text-purple-500">
+                Returns & Refunds
+              </a>
+            </li>
             <li>
               <a href="#" className="hover:text-purple-500">
                 Delivery
@@ -55,15 +56,24 @@ export default function Footer() {
           </ul>
         </section>
         <address className="not-italic">
-          <h3 className="text-white-500 font-bold mb-4">Contact</h3>
+          <h3 className="text-white-500 text-sm  mb-4 ">Contact</h3>
           <p>
             2 Joppa Rd, Edinburgh, EH15 2EU
             <br />
-            <IoCallOutline /> 0131 556 7901
           </p>
+          <article className="Phone_numbers ">
+            <p className="flex items-center space-x-2 justify-center">
+              <IoCallSharp /> <span> 0131 556 7901</span>
+            </p>
+            <br />
+            <p>44 Cow Wynd, Falkirk, Central Region, FK1 1PU</p>
+            <p className="flex items-center space-x-2 justify-center">
+              <IoCallSharp /> <span> 01324 629 011</span>
+            </p>
+          </article>
 
           <div
-            className="flex items-center space-x-4 mt-2 text-2xl"
+            className="flex items-center justify-center space-x-4 mt-2 text-2xl"
             aria-label="Social media"
           >
             <a href="#" className="hover:text-purple-500" aria-label="Facebook">
@@ -85,13 +95,21 @@ export default function Footer() {
           </div>
         </address>
       </div>
-      <div className="border-t border-gray-700 mt-6 pt-4 text-center">
-        <div className=" " aria-label="Payment methods">
-          <article className="payment-icons flex space-x-4 text-3xl">
-            <FaStripe />
-            <FaCcVisa />
-            <FaCcMastercard />
+      <div className=" border__control text-white border-t  mt-6 pt-4 text-center">
+        <div className=" " aria-label="Payment methods flex">
+          <article className="payment-icons gap-3 flex space-x-4 text-3xl  ">
+            <FaStripe className=" cursor-pointer bg-white text-black " />
+            <FaCcVisa className="cursor-pointer " />
+            <FaCcMastercard className="cursor-pointer " />
           </article>
+          <p className="payment_Text text-white-500 mt-2">
+            HiFi Horizon (Edinburgh) Ltd is registered in Scotland. No:
+            SC049298. Registered office: 2 Joppa Rd, Edinburgh EH15 2EU
+            <span className="">
+              {" "}
+              Designed by WU13 <GoSmiley className="text-sky-400" />
+            </span>
+          </p>
         </div>
       </div>
     </section>
