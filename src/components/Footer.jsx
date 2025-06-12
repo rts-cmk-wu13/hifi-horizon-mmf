@@ -7,6 +7,7 @@ import { FaTwitterSquare } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { GoSmiley } from "react-icons/go";
+import { Link } from "react-router";
 
 export default function Footer() {
   return (
@@ -34,9 +35,9 @@ export default function Footer() {
         <section aria-labelledby="returns-refunds-heading">
           <ul>
             <li>
-              <a href="#" className="hover:text-purple-500">
+              <Link to="/FAQ#test" className="hover:text-purple-500">
                 Returns & Refunds
-              </a>
+              </Link>
             </li>
             <li>
               <a href="#" className="hover:text-purple-500">
