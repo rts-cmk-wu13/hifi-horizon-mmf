@@ -1,10 +1,10 @@
 @import "tailwindcss";
-#root {
+/* #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-}
+} */
 .payment_Text {
   text-align: start;
 }
@@ -19,7 +19,7 @@
 .payment-icons {
   width: 150px;
 }
-footer {
+/* footer {
   position: absolute;
   bottom: 0;
-}
+} */
