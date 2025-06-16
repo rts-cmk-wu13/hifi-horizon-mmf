@@ -1,3 +1,10 @@
+import CardHome from "../components/CardHome";
+
+
 export default function Home() {
-  return <h1>test</h1>;
+  return <>
+
+  <CardHome />
+
+  </>
 }
