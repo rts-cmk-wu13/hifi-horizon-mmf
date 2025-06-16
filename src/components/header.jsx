@@ -1,4 +1,5 @@
 import { Link, NavLink } from "react-router";
+import logo from "/public/logo_sml 1.png";
 
 const style = {
   header: {
@@ -32,7 +33,7 @@ export default function Header() {
       <nav style={style.nav}>
         <Link to={"/"}>
           <img
-            src="./logo_sml 1.png"
+            src={logo}
             alt="Logo"
             style={{ width: "50px", height: "50px" }}
           />
