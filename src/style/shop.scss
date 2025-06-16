@@ -39,10 +39,7 @@ $font-family: "Open Sans", sans-serif;
 }
 
 input[type=":checked"] {
-  color: green;
-}
-input[type="checkbox"]:checked {
-  color: green;
+  accent-color: #008000;
 }
 
 input {
