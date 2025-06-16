@@ -11,7 +11,7 @@ import { Link } from "react-router";
 
 export default function Footer() {
   return (
-    <section className="bg-black text-white p-6">
+    <section className="bg-black text-white p-6 max-w-screen-xl px-4 py-12 mx-auto space-y-8 overflow-hidden sm:px-6 lg:px-8">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         <nav aria-label="Main footer" className="mb-4">
           <ul>

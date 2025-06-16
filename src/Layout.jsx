@@ -2,6 +2,7 @@ import { Outlet } from "react-router";
 import Footer from "./components/Footer";
 import "./App.css";
 import Header from "./components/header";
+import Spinner from "./Pages/Load";
 
 function Layout() {
   return (
@@ -12,9 +13,13 @@ function Layout() {
 
       <main>
         <Outlet />
+        {/*  <Spinner /> */}
       </main>
 
-      <footer className="">{/*   <Footer /> */}</footer>
+      <footer className="">
+        {" "}
+        <Footer />
+      </footer>
     </>
   );
 }

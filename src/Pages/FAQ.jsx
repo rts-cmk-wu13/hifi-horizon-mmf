@@ -1,13 +1,19 @@
+import "../style/Faq.css";
 export default function FAQ() {
   return (
     <>
-      <h1 className="mb-1 text-left">Frequently Asked Questions</h1>
-      <article id="faq" className="faq__wrapper flex flex-col gap-2 mb-2.5">
-        <h4 id="test" className="text-lg font-bold ">
+      <h1 className="mb-1 text-left text-[#495464] font-open-sans text-5xl font-semibold ">
+        Frequently Asked Questions
+      </h1>
+      <article
+        id="faq"
+        className="faq__wrapper flex flex-col gap-2 mb-2.5 p-5 bg-white"
+      >
+        <h2 id="test" className="text-lg font-bold ">
           Here at HiFi Horizon, our trained product specialists aim to provide
-          the right product for you. We take great care with all of our orders
-          to ensure you are fully happy with the product.
-        </h4>
+          the right product for <br /> you. We take great care with all of our
+          orders to ensure you are fully happy with the product.
+        </h2>
         <p>
           We aim to resolve any problems to your satisfaction. Please contact us
           directly, if, for any reason, you have an issue with your order, your
@@ -32,7 +38,7 @@ export default function FAQ() {
           misuse.
         </p>
         <section className="refund__policy">
-          <h1 className="text-2xl text-black font-bold mb-1.5">REFUNDS</h1>
+          <h3 className="text-2xl text-black font-bold mb-1.5">REFUNDS</h3>
           <p>
             Once your returned item is received and inspected, we will send you
             an email or phone call to notify you that we have received your
@@ -123,7 +129,7 @@ export default function FAQ() {
           </p>
         </section>
         <section>
-          <h1>RETURNS PROCESS/YOUR STATUTORY RIGHTS</h1>
+          <h3>RETURNS PROCESS/YOUR STATUTORY RIGHTS</h3>
           <p>
             If you wish to return goods purchased online or over the phone, you
             should notify HiFi Horizon of your intention to do so within 14 days

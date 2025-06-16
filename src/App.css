@@ -4,6 +4,7 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  background: #f4f4f2;
 }
 .payment_Text {
   text-align: start;
@@ -20,8 +21,9 @@
   width: 150px;
 }
 footer {
-  position: absolute;
-  bottom: 0;
   width: 100%;
-  margin-bottom: 25px;
+  margin-top: 25px;
+  position: static;
+  bottom: 0;
+  left: auto;
 }
