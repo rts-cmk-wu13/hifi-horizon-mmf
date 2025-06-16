@@ -1,7 +1,7 @@
 import { FiSliders } from "react-icons/fi";
 import { GoDotFill } from "react-icons/go";
 import { Link } from "react-router";
-import productImg from "/public/product_1.svg";
+import productImg from "/product_1.svg";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import "../style/shop.scss";
 
