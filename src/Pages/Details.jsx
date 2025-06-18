@@ -1,6 +1,7 @@
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 import Chatbot from "../components/Chatbot";
+import "../style/detail.css";
 
 export default function Shopdetails() {
   const { id } = useParams();
@@ -45,9 +46,12 @@ export default function Shopdetails() {
           >
             {product.stock}
           </p>
-          <button className="bg-orange-600 text-white px-6 py-2 rounded shadow">
-            Add to cart
-          </button>
+          <div className="flex items-center gap-4 mb-6 justify-evenly">
+            <button className="text-black text-3xl">-</button>
+            <span className="text-lg">1</span>
+            <button className="text-black text-3xl">+</button>
+            <button className="cart__bttn">Add to cart</button>
+          </div>
         </div>
       </section>
     </>
