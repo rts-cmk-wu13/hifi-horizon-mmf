@@ -1,6 +1,5 @@
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
-import Chatbot from "../components/Chatbot";
 import "../style/detail.css";
 import black from "/icons/black.svg";
 import Silver from "/icons/silver.svg";
@@ -26,7 +25,6 @@ export default function Shopdetails() {
 
   return (
     <>
-      <Chatbot />
       <h1 className="text-4xl font-bold mb-8 text-gray-700">
         {product.product_name}
       </h1>

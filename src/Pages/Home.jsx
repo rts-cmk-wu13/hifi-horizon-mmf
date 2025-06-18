@@ -1,6 +1,7 @@
 import CardHome from "../components/CardHome";
 import HomeHero from "../components/HomeHero";
-import Homeinfo from "../components/Homeinfo";
+import HomeInfo from "../components/HomeInfo";
+import HomeNewsletter from "../components/HomeNewsletter";
 
 export default function Home() {
   return (
@@ -8,7 +9,8 @@ export default function Home() {
       <HomeHero />
 
       <CardHome />
-      <Homeinfo />
+      <HomeInfo />
+      <HomeNewsletter />
     </>
   );
 }
