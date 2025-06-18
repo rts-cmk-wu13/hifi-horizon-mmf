@@ -18,3 +18,19 @@
 button {
   cursor: pointer;
 }
+hr {
+  background: #d2d2d2;
+  width: 85%;
+  height: 1px;
+  border: none;
+  text-align: center;
+  margin: 0 auto;
+}
+.stock {
+  color: #000;
+  font-family: "Open Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}

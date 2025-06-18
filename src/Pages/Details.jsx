@@ -5,6 +5,7 @@ import "../style/detail.css";
 import black from "/icons/black.svg";
 import Silver from "/icons/silver.svg";
 import Gold from "/icons/gold.svg";
+import { GoDotFill } from "react-icons/go";
 
 export default function Shopdetails() {
   const { id } = useParams();
@@ -67,8 +68,12 @@ export default function Shopdetails() {
               <span>Gold</span>
             </div>
           </div>
-          <p className="text-2xl font-bold mb-2">
-            {product.price_dkk} DKK <span> {product.stock}</span>
+          <p className="text-2xl font-bold mb-2 flex justify-between mb-6">
+            {product.price_dkk} DKK{" "}
+            <span className="stock flex items-center mr-3 ">
+              {" "}
+              in stock <GoDotFill className="text-green-600" />{" "}
+            </span>
           </p>
           <div className="flex items-center gap-4 mb-6 justify-evenly ">
             <button className="text-black text-3xl">-</button>
@@ -78,6 +83,7 @@ export default function Shopdetails() {
           </div>
         </div>
       </section>
+      <hr />
     </>
   );
 }
