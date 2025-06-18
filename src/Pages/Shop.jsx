@@ -64,7 +64,7 @@ export default function Shop() {
             filteredProducts.map((product, index) => (
               <div
                 key={index}
-                className="p-4 rounded shadow flex flex-col items-center justify-between"
+                className="bg-white p-4 rounded shadow flex flex-col items-center justify-between"
               >
                 <h3 className="mr-2 flex">
                   Compare <FiSliders />
