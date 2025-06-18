@@ -7,3 +7,14 @@
   color: white;
   cursor: pointer;
 }
+.color_container {
+  display: flex;
+  flex-direction: column;
+}
+.color_container span {
+  display: grid;
+}
+
+button {
+  cursor: pointer;
+}

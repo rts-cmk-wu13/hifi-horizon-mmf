@@ -25,6 +25,7 @@ const router = createBrowserRouter([
       {
         path: "Shop/:id",
         element: <Shopdetails />,
+        errorElement: <NotFound />,
       },
       {
         path: "About",
