@@ -46,14 +46,18 @@ hr {
 }
 .bg_controller {
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 15px;
+  grid-template-columns: 1fr;
+  gap: 0;
+  box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+  border-radius: 25px;
 }
 .bg_controller div:nth-child(odd) {
   background: #e8e8e8;
 }
 .bg_controller div:nth-child(even) {
   background: #ffffff;
+  box-shadow: 1px 5px 8px 2px rgba(0, 0, 0, 0.25);
 }
 .bg_controller div {
   display: grid;
@@ -75,6 +79,16 @@ hr {
   grid-template-columns: 1fr;
   gap: 0;
 }
+.spec__header {
+  color: #000;
+  font-family: "Open Sans";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-align: left;
+  margin: 38px;
+}
 
 .specs__row {
   display: grid;
@@ -84,14 +98,6 @@ hr {
   align-items: center;
   padding: 0 10px;
   margin: 25px;
-}
-
-.bg_controller .specs__row:nth-child(odd) {
-  background: #e8e8e8;
-}
-
-.bg_controller .specs__row:nth-child(even) {
-  background: #ffffff;
 }
 
 .specs__row strong {

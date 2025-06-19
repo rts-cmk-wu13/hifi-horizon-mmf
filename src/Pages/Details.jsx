@@ -84,7 +84,7 @@ export default function Shopdetails() {
       <hr />
 
       <section className="specs mt-8">
-        <h1 className="mb-4">PRODUCT SPECIFICATIONS</h1>
+        <h1 className=" spec__header mb-4">PRODUCT SPECIFICATIONS</h1>
         <div className="specs__wrapper mb-8">
           {product.product_specifications ? (
             <article className="bg_controller">
