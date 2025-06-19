@@ -1,85 +1,81 @@
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
+import { useState } from "react";
 import logo from "/public/logo_sml 1.png";
 
-const style = {
-  header: {
-    backgroundColor: "#000000",
-    padding: "20px",
-    color: "white",
-    textAlign: "center",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-
-  li: {
-    margin: 0,
-    listStyle: "none",
-    display: "inline",
-    padding: "0 15px",
-    fontFamily: "sans-serif",
-    fontSize: "14px",
-  },
-  nav: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-};
+const CATEGORIES = [
+  { label: "CD Players", value: "cd-afspillere" },
+  { label: "DVD Players", value: "dvd-afspillere" },
+  { label: "forforstaerkere", value: "forforstaerkere" },
+  { label: "hojtalere", value: "hojtalere" },
+];
 
 export default function Header() {
+  const navigate = useNavigate();
+  const [hoverShop, setHoverShop] = useState(false);
+
+  const handleCategoryClick = (category) => {
+    navigate(`/shop?category=${category}`);
+    setHoverShop(false);
+  };
+
   return (
-    <header style={style.header}>
-      <nav style={style.nav}>
+    <header className="bg-black text-white p-5 flex items-center justify-between relative">
+      <nav
+        className="flex justify-center items-center relative"
+        onMouseLeave={() => setHoverShop(false)}
+      >
         <Link to={"/"}>
-          <img
-            src={logo}
-            alt="Logo"
-            style={{ width: "50px", height: "50px" }}
-          />
+          <img src={logo} alt="Logo" className="w-12 h-12" />
         </Link>
 
-        <NavLink to={"/shop"}>
-          {" "}
-          <li style={style.li}>SHOP </li>
-        </NavLink>
-        <NavLink to={"/About"}>
-          <li style={style.li}>ABOUT US</li>
-        </NavLink>
-        <NavLink to={"/Contact"}>
-          {" "}
-          <li style={style.li}>CONTACT US</li>{" "}
-        </NavLink>
-      </nav>
-      <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
         <div
-          style={{
-            position: "relative",
-            display: "flex",
-            alignItems: "center",
-            width: "252px",
-            backgroundColor: "#fff",
-            borderRadius: "5px",
-            padding: "5px",
+          className="cursor-pointer px-4 text-sm font-sans relative inline-block"
+          onMouseEnter={() => setHoverShop(true)}
+          onClick={() => {
+            navigate("/shop");
+            setHoverShop(false);
           }}
         >
+          <p>SHOP</p>
+          {hoverShop && (
+            
+            <div className="absolute top-full left-5 bg-white text-[#A39161] shadow-lg z-50 flex flex-col min-w-[22.563rem]">
+              <p className="text-black text-2xl my-[1rem]">Browse Categories</p>
+              {CATEGORIES.map((cat) => (
+                <span
+                  key={cat.value}
+                  className="px-4 py-2 border-b border-none hover:bg-gray-200 whitespace-nowrap cursor-pointer text-md"
+                  onClick={(e) => {
+                    e.stopPropagation(); // forhindrer klik i at trigge /shop navigation
+                    handleCategoryClick(cat.value);
+                  }}
+                >
+                  {cat.label}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <NavLink to={"/About"} className="text-sm font-sans px-4 inline-block cursor-pointer">
+          <li className="list-none">ABOUT US</li>
+        </NavLink>
+        <NavLink to={"/Contact"} className="text-sm font-sans px-4 inline-block cursor-pointer">
+          <li className="list-none">CONTACT US</li>
+        </NavLink>
+      </nav>
+
+      <div className="flex items-center gap-5">
+        <div className="relative flex items-center w-[252px] bg-white rounded-md p-1">
           <input
             type="text"
             placeholder="Search Products"
-            style={{
-              padding: "10px",
-              width: "200px",
-              borderRadius: "5px",
-              border: "none",
-            }}
+            className="pl-3 pr-10 py-2 w-[200px] rounded-md border-none focus:outline-none"
           />
-          <i
-            className="fa-solid fa-magnifying-glass"
-            style={{ color: "black", fontSize: "x-large" }}
-          ></i>
+          <i className="fa-solid fa-magnifying-glass text-black text-xl absolute right-3"></i>
         </div>
-        <i className="fa-solid fa-user"></i>
-        <i className="fa-solid fa-cart-shopping"></i>
+        <i className="fa-solid fa-user cursor-pointer"></i>
+        <i className="fa-solid fa-cart-shopping cursor-pointer"></i>
       </div>
     </header>
   );
