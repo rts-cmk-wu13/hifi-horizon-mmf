@@ -83,13 +83,35 @@ export default function Shopdetails() {
       </section>
       <hr />
 
-      <section className="prod__wrapper mt-8">
-        <h1>PRODUCT SPECIFICATIONS</h1>
-        <article>
-          <div className="specs__wrapper flex">
-            <p>test</p>
-          </div>
-        </article>
+      <section className="specs mt-8">
+        <h1 className="mb-4">PRODUCT SPECIFICATIONS</h1>
+        <div className="specs__wrapper mb-8 ">
+          {product.product_specifications ? (
+            <article className="bg_controller ">
+              {Object.entries(product.product_specifications).map(
+                ([key, value]) => (
+                  <div className="flex justify-evenly" key={key}>
+                    <strong>
+                      {key
+                        .replace(/_/g, " ")
+                        .replace(/\b\w/g, (l) => l.toUpperCase())}
+                      :
+                    </strong>{" "}
+                    {Array.isArray(value)
+                      ? value.join(", ")
+                      : typeof value === "boolean"
+                      ? value
+                        ? "Yes"
+                        : "No"
+                      : value}
+                  </div>
+                )
+              )}
+            </article>
+          ) : (
+            <p>Ingen specifikationer tilgængelige.</p>
+          )}
+        </div>
       </section>
     </>
   );

@@ -39,3 +39,16 @@ hr {
   font-weight: 400;
   line-height: normal;
 }
+.specs__wrapper {
+  display: flex;
+
+  width: 500px;
+}
+.bg_controller {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 15px;
+}
+.bg_controller div:nth-child(odd) {
+  background: #e8e8e8;
+}
