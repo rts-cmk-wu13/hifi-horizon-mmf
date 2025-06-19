@@ -2,7 +2,7 @@ import { Form } from "react-router"
 
 export default function HomeNewsletter() {
     return (
-        <section className="bg-white shadow-md py-10 px-6 text-center max-w-5xl mx-auto">
+        <section className="bg-white shadow-md py-10 px-6 text-center max-w-5xl mx-auto my-[5rem]">
             <h2 className="text-2xl md:text-3xl font-bold uppercase mb-2">Sign up for our newsletter</h2>
             <p className="text-gray-700 max-w-3xl mx-auto mb-6">
                 Subscribing to our newsletter secures you up to date information about HiFi Horizons latest updates and offers.
@@ -17,8 +17,7 @@ export default function HomeNewsletter() {
                 />
                 <button
                     type="submit"
-                    className="bg-orange-500 hover:bg-orange-600 text-white font-medium px-6 py-3 rounded-md shadow"
-                >
+                    className="bg-orange-500 hover:bg-orange-600 text-white font-medium px-6 py-3 rounded-sm shadow">
                     Sign up
                 </button>
             </Form>

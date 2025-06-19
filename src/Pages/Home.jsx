@@ -4,6 +4,7 @@ import HomeInfo from "../components/HomeInfo";
 import HomeNewsletter from "../components/HomeNewsletter";
 
 export default function Home() {
+
   return (
     <>
       <HomeHero />
