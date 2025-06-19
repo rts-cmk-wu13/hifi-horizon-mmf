@@ -52,3 +52,54 @@ hr {
 .bg_controller div:nth-child(odd) {
   background: #e8e8e8;
 }
+.bg_controller div:nth-child(even) {
+  background: #ffffff;
+}
+.bg_controller div {
+  display: grid;
+  grid-template-columns: 250px 250px;
+  justify-items: center;
+  width: 500px;
+  height: 42px;
+  justify-content: start;
+  align-content: center;
+}
+
+.specs__wrapper {
+  display: flex;
+  width: 500px;
+}
+
+.bg_controller {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+.specs__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 500px;
+  height: 42px;
+  align-items: center;
+  padding: 0 10px;
+  margin: 25px;
+}
+
+.bg_controller .specs__row:nth-child(odd) {
+  background: #e8e8e8;
+}
+
+.bg_controller .specs__row:nth-child(even) {
+  background: #ffffff;
+}
+
+.specs__row strong {
+  font-weight: bold;
+  text-align: left;
+}
+
+.specs__value {
+  text-align: right;
+  font-weight: normal;
+}

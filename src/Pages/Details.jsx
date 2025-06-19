@@ -66,7 +66,7 @@ export default function Shopdetails() {
               <span>Gold</span>
             </div>
           </div>
-          <p className="text-2xl font-bold mb-2 flex justify-between mb-6">
+          <p className="text-2xl font-bold  flex justify-between mb-6">
             {product.price_dkk} DKK{" "}
             <span className="stock flex items-center mr-3 ">
               {" "}
@@ -85,25 +85,28 @@ export default function Shopdetails() {
 
       <section className="specs mt-8">
         <h1 className="mb-4">PRODUCT SPECIFICATIONS</h1>
-        <div className="specs__wrapper mb-8 ">
+        <div className="specs__wrapper mb-8">
           {product.product_specifications ? (
-            <article className="bg_controller ">
+            <article className="bg_controller">
               {Object.entries(product.product_specifications).map(
                 ([key, value]) => (
-                  <div className="flex justify-evenly" key={key}>
+                  <div className="specs__row" key={key}>
                     <strong>
                       {key
                         .replace(/_/g, " ")
                         .replace(/\b\w/g, (l) => l.toUpperCase())}
-                      :
-                    </strong>{" "}
-                    {Array.isArray(value)
-                      ? value.join(", ")
-                      : typeof value === "boolean"
-                      ? value
-                        ? "Yes"
-                        : "No"
-                      : value}
+                    </strong>
+                    <span className="specs__value">
+                      {Array.isArray(value)
+                        ? value.join(", ")
+                        : typeof value === "boolean"
+                        ? value
+                          ? "Yes"
+                          : "No"
+                        : typeof value === "object" && value !== null
+                        ? JSON.stringify(value)
+                        : value}
+                    </span>
                   </div>
                 )
               )}
