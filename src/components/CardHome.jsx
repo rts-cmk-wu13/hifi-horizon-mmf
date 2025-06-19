@@ -5,12 +5,11 @@ export default function CardHome() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:4000/products")
+    fetch("https://hifi-api-cpmk.onrender.com/products")
       .then((res) => res.json())
       .then((data) => {
         console.log("Data fra API:", data);
-        
-       
+
         if (data.results) {
           setProducts(data.results);
         } else if (Array.isArray(data)) {
@@ -23,8 +22,6 @@ export default function CardHome() {
         console.error("Fejl ved hentning:", error);
       });
   }, []);
-
-
 
   return (
     <section className="grid grid-rows-[4rem_1fr] grid-cols-[2.313rem_auto_1fr_1fr_auto_2.313rem] items-center justify-items-center">
@@ -61,5 +58,6 @@ export default function CardHome() {
       ))}
     </div>
   </section>
+
   );
 }

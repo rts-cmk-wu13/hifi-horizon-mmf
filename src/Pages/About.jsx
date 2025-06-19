@@ -1,3 +1,8 @@
+import histroy1 from "/aboutus/first.svg";
+import histroy2 from "/aboutus/second.svg";
+import histroy3 from "/aboutus/third.svg";
+import histroy4 from "/aboutus/fourth.svg";
+
 export default function About() {
   const style = {
     aboutusContent: {
@@ -65,7 +70,7 @@ export default function About() {
       <div style={{ padding: "2rem", backgroundColor: "#D5D5D5" }}>
         <h2 style={style.h2}>OUR HISTORY</h2>
         <div className="aboutus-content" style={style.aboutusContent}>
-          <img src="./Rectangle 79.png" alt="Our history" style={style.img} />
+          <img src={histroy1} alt="Our history" style={style.img} />
           <div className="aboutus-text" style={style.textAbout}>
             <h3>HISTORY</h3>
             <span style={style.span}>
@@ -114,8 +119,8 @@ export default function About() {
               solutions that suit your needs.
             </p>
           </div>
-          <img src="./Rectangle 80.png" alt="Our team" style={style.img} />
-          <img src="./Rectangle 81.png" alt="Our store" style={style.img} />
+          <img src={histroy2} alt="Our team" style={style.img} />
+          <img src={histroy3} alt="Our store" style={style.img} />
           <div className="aboutus-text" style={style.textAbout}>
             <h3>Services</h3>
             <span style={style.span}>
@@ -167,7 +172,7 @@ export default function About() {
               the system of their dreams.
             </p>
           </div>
-          <img src="./image 1.png" alt="Our mission" style={style.img} />
+          <img src={histroy4} alt="Our mission" style={style.img} />
         </div>
       </div>
     </>

@@ -8,6 +8,7 @@ import "../style/shop.scss";
 
 export default function Shop() {
   const [products, setProducts] = useState([]);
+
   const [loading, setLoading] = useState(true);
   const { brand } = useParams();
   const navigate = useNavigate();
@@ -19,10 +20,12 @@ export default function Shop() {
 
   // Fetch all products
   useEffect(() => {
+
     setLoading(true);
     fetch("http://localhost:4000/products")
       .then((res) => res.json())
       .then((data) => {
+
         if (data.results) {
           setProducts(data.results);
         } else if (Array.isArray(data)) {
@@ -63,6 +66,7 @@ export default function Shop() {
           onBrandChange={handleBrandChange}
         />
         <section className="w-4/5 p-4 grid grid-cols-3 gap-4">
+
           {loading ? (
             <p>Loading products...</p>
           ) : filteredProducts.length === 0 ? (
@@ -82,6 +86,7 @@ export default function Shop() {
                     alt={product.product_name}
                     className="my-2"
                   />
+
                 </Link>
                 <h3 className="text-center">{product.product_name}</h3>
                 <p className="font-bold mt-2">{product.price_dkk} DKK</p>
