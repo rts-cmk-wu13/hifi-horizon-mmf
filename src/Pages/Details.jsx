@@ -11,7 +11,7 @@ export default function Shopdetails() {
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:4000/products/${id}`)
+    fetch(`https://hifi-api-cpmk.onrender.com/products/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setProduct(data);
@@ -28,12 +28,12 @@ export default function Shopdetails() {
       <h1 className="text-4xl font-bold mb-8 text-gray-700">
         {product.product_name}
       </h1>
-      <section className="flex flex-col md:flex-row gap-10 bg-gray-50 p-8 rounded-lg shadow-md detail__wrapper">
+      <section className="flex flex-col md:flex-row gap-10 bg-[#F4F4F2] p-8 rounded-lg shadow-md detail__wrapper">
         <div className="flex-1 flex flex-col items-center">
           <img
             src={product.image_url}
             alt={product.product_name}
-            className="rounded-lg object-contain w-80max-w-md "
+            className="rounded-lg object-contain w-80max-w-md w-[337px] h-[182px] "
           />
         </div>
         <div className="flex-1">
@@ -82,6 +82,15 @@ export default function Shopdetails() {
         </div>
       </section>
       <hr />
+
+      <section className="prod__wrapper mt-8">
+        <h1>PRODUCT SPECIFICATIONS</h1>
+        <article>
+          <div className="specs__wrapper flex">
+            <p>test</p>
+          </div>
+        </article>
+      </section>
     </>
   );
 }
