@@ -9,6 +9,7 @@ $font-family: "Open Sans", sans-serif;
   color: white;
   cursor: pointer;
   transition: background 0.3s;
+      padding: 5px;
 
   &:hover {
     background: #e65c00;
@@ -49,4 +50,34 @@ input {
   width: 19.554px;
   height: 19.737px;
   border-radius: 50%;
+}
+
+@media (max-width: 600px) {
+  .products__wrapper {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .product__bttn {
+    width: 100%;
+    min-width: 0;
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  .aside_box {
+    padding: 10px;
+  }
+
+  .product__link {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  input {
+    width: 28px;
+    height: 28px;
+  }
 }

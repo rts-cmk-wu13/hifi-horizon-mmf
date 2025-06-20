@@ -57,8 +57,8 @@ export default function Shop() {
   return (
     <>
       <h1 className="uppercase text-2xl font-bold mb-4">Products</h1>
-      <div className="flex">
-        <aside className="w-1/5 p-4 bg-gray-100">
+      <div className="flex flex-col md:flex-row">
+        <aside className="aside_box w-full md:w-1/5 p-4 bg-gray-100">
           <h3 className="text-lg font-semibold mb-2">Sort by</h3>
           <div className="space-y-2">
             <div className="header__dropdown ">
@@ -94,11 +94,11 @@ export default function Shop() {
           </div>
         </aside>
 
-        <section className="w-4/5 p-4 grid grid-cols-3 gap-4">
+        <section className="products__wrapper w-full md:w-4/5 p-4 grid grid-cols-3 gap-4">
           {products.map((product, index) => (
             <div
               key={index}
-              className=" p-4 rounded shadow flex flex-col items-center"
+              className="p-4 rounded shadow flex flex-col items-center"
             >
               <h3 className="text-center flex justify-center items-center gap-2">
                 Compare <FiSliders />

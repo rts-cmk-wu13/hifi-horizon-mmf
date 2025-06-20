@@ -1,4 +1,5 @@
-import { Link, NavLink } from "react-router";
+import { Link, NavLink } from "react-router-dom";
+import React from "react";
 
 const style = {
   header: {
@@ -26,6 +27,8 @@ const style = {
   },
 };
 
+const user = null; 
+
 export default function Header() {
   return (
     <header style={style.header}>
@@ -38,16 +41,35 @@ export default function Header() {
           />
         </Link>
 
-        <NavLink to={"/shop"}>
-          {" "}
-          <li style={style.li}>SHOP </li>
+        <NavLink
+          to={"/shop"}
+          style={({ isActive }) =>
+            isActive
+              ? { ...style.li, borderBottom: "2px solid white" }
+              : style.li
+          }
+        >
+          SHOP
         </NavLink>
-        <NavLink to={"/About"}>
-          <li style={style.li}>ABOUT US</li>
+        <NavLink
+          to={"/About"}
+          style={({ isActive }) =>
+            isActive
+              ? { ...style.li, borderBottom: "2px solid white" }
+              : style.li
+          }
+        >
+          ABOUT US
         </NavLink>
-        <NavLink to={"/Contact"}>
-          {" "}
-          <li style={style.li}>CONTACT US</li>{" "}
+        <NavLink
+          to={"/Contact"}
+          style={({ isActive }) =>
+            isActive
+              ? { ...style.li, borderBottom: "2px solid white" }
+              : style.li
+          }
+        >
+          CONTACT US
         </NavLink>
       </nav>
       <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
@@ -65,11 +87,13 @@ export default function Header() {
           <input
             type="text"
             placeholder="Search Products"
+            id="search"
             style={{
               padding: "10px",
               width: "200px",
               borderRadius: "5px",
               border: "none",
+              color: "black",
             }}
           />
           <i
@@ -77,7 +101,32 @@ export default function Header() {
             style={{ color: "black", fontSize: "x-large" }}
           ></i>
         </div>
-        <i className="fa-solid fa-user"></i>
+        {user ? (
+          // Display username when logged in
+          <div
+            style={{
+              padding: "10px",
+              color: "white",
+              backgroundColor: "transparent",
+              fontFamily: "sans-serif",
+              fontSize: "14px",
+            }}
+          >
+            {user.name}
+          </div>
+        ) : (
+          // Display login icon when not logged in
+          <Link
+            to="/login"
+            style={{
+              textDecorationLine: "underline",
+              textDecorationColor: "rgb(252, 80, 0)",
+              textDecorationThickness: "1px",
+            }}
+          >
+            <i className="fa-solid fa-user"></i>
+          </Link>
+        )}
         <i className="fa-solid fa-cart-shopping"></i>
       </div>
     </header>

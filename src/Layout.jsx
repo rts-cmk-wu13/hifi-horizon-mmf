@@ -1,20 +1,21 @@
-import { Outlet } from "react-router";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import "./App.css";
+import { Outlet, useNavigation } from "react-router-dom";
+import Footer from "./components/footer";
+import Header from "./components/header";
+import Spinner from "./components/load";
+import "./App.css"; 
 
-function Layout() {
+
+export default function Layout() {
+  const navigation = useNavigation();
+
   return (
     <>
       <Header />
-
       <main>
+        {navigation.state === "loading" && <Spinner />}
         <Outlet />
       </main>
-
-      <footer className="">{/*   <Footer /> */}</footer>
+      <Footer />
     </>
   );
 }
-
-export default Layout;
