@@ -5,6 +5,7 @@ import { Link, useParams, useNavigate, useLocation } from "react-router";
 import productImg from "/public/product_1.svg";
 import ShopSidebar from "../components/ShopSidebar";
 import "../style/shop.scss";
+import Loading from "../components/Loading";
 
 export default function Shop() {
   const [products, setProducts] = useState([]);
@@ -71,7 +72,7 @@ export default function Shop() {
         />
         <section className="w-4/5 p-4 grid grid-cols-3 gap-4">
           {loading ? (
-            <p>Loading products...</p>
+            <Loading />
           ) : filteredProducts.length === 0 ? (
             <p>
               No products found for category: {category}, brand: {brand}
@@ -85,7 +86,7 @@ export default function Shop() {
                 <h3 className="mr-2 flex">
                   Compare <FiSliders />
                 </h3>
-                <Link to={`/shop/product/${product.id}`}>
+                <Link to={`/product/${product.id}`}>
                   <img
                     src={product.image_url || productImg}
                     alt={product.product_name}

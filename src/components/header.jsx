@@ -20,7 +20,7 @@ export default function Header() {
 
   // Hent produkter ved mount
   useEffect(() => {
-    fetch("http://localhost:4000/products") // Skift URL til dit API endpoint
+    fetch("https://hifi-api-cpmk.onrender.com/products") // Skift URL til dit API endpoint
       .then((res) => res.json())
       .then((data) => {
         const allProducts = data.results ? data.results : data;

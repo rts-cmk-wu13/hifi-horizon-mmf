@@ -5,6 +5,7 @@ import black from "/icons/black.svg";
 import Silver from "/icons/silver.svg";
 import Gold from "/icons/gold.svg";
 import { GoDotFill } from "react-icons/go";
+import Loading from "../components/Loading";
 
 export default function Shopdetails() {
   const { id } = useParams();
@@ -21,7 +22,7 @@ export default function Shopdetails() {
       });
   }, [id]);
 
-  if (!product) return <p>Indlæser produkt...</p>;
+  if (!product) return <Loading />;
 
   return (
     <>
@@ -36,6 +37,8 @@ export default function Shopdetails() {
             className="rounded-lg object-contain w-80max-w-md w-[337px] h-[182px] "
           />
         </div>
+
+        <div className=" md:block w-px bg-gray-300 mx-6"></div>
         <div className="flex-1">
           <p className="text-gray-700 mb-4">{product.description}</p>
 
@@ -85,7 +88,8 @@ export default function Shopdetails() {
 
       <section className="specs mt-8">
         <h1 className=" spec__header mb-4">PRODUCT SPECIFICATIONS</h1>
-        <div className="specs__wrapper mb-8">
+        <div className="specs__wrapper mb-8 ">
+          <span className="  w-2 bg-sky-500 mx-6"></span>
           {product.product_specifications ? (
             <article className="bg_controller">
               {Object.entries(product.product_specifications).map(

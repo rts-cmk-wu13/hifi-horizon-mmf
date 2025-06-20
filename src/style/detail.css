@@ -74,11 +74,6 @@ hr {
   width: 500px;
 }
 
-.bg_controller {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0;
-}
 .spec__header {
   color: #000;
   font-family: "Open Sans";

@@ -1,3 +1,5 @@
+import Loading from "../components/Loading";
+
 const style = {
   h2: {
     fontSize: "2rem",
@@ -13,7 +15,7 @@ const style = {
     padding: "2rem",
     borderRadius: "8px",
     boxShadow: "0 0 10px rgba(0,0,0,0.1)",
-    paddung: "2rem",
+    padding: "2rem",
   },
   button: {
     padding: "10px",
@@ -22,9 +24,9 @@ const style = {
     border: "none",
     borderRadius: "4px",
     cursor: "pointer",
-    witdh: "fit-content",
+    width: "fit-content",
     marginLeft: "auto",
-    boxShadow: "0 0 10px rgba(0,0,0,53%)",
+    boxShadow: "0 0 10px rgba(0,0,0,0.53)",
     width: "100px",
   },
   input: {
@@ -43,7 +45,20 @@ const style = {
   },
 };
 
+import React, { useState, useEffect } from "react";
+
 export default function Contact() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 5000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <div style={{ padding: "2rem", backgroundColor: "#D5D5D5" }}>
       <h2 style={style.h2}>Get in touch with us</h2>
@@ -59,7 +74,7 @@ export default function Contact() {
         </label>
         <label style={{ marginBottom: 5 }}>
           Subject
-          <input type="email" style={style.input} />
+          <input type="text" style={style.input} />
         </label>
         <label style={{ marginBottom: 5 }}>
           Message

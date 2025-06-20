@@ -7,11 +7,15 @@ import About from "./Pages/About";
 import Contact from "./Pages/Contact";
 import FAQ from "./Pages/FAQ";
 import Shopdetails from "./Pages/Details";
+import { ErrorBoundary } from "./components/Error";
+import Loading from "./components/Loading";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
+    hydrateFallbackElement: <Loading />,
+    errorElement: <ErrorBoundary />,
 
     children: [
       {
@@ -23,9 +27,9 @@ const router = createBrowserRouter([
         element: <Shop />,
       },
       {
-        path: "/shop/product/:id",
+        path: "/product/:id",
         element: <Shopdetails />,
-      },      
+      },
       {
         path: "About",
         element: <About />,
@@ -45,7 +49,6 @@ const router = createBrowserRouter([
         path: "*",
         element: <NotFound />,
       },
-      
     ],
   },
 ]);
