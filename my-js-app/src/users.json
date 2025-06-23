@@ -1,0 +1,24 @@
+[
+  {
+    "email": "fadialasadi93@gmail.com",
+    "password": "12345",
+    "fullname": "fadi al assdi",
+    "phone": "+4571862422",
+    "address1": "peder lykkes vej 127",
+    "address2": "",
+    "city": "vestamager",
+    "zipcode": "2300",
+    "country": "DK"
+  },
+  {
+    "email": "faadias62@gmail.com",
+    "password": "$2b$10$Lv92nIeh0SR8qtWNw5fwdO3mbYjen3H5OCOhIeTOWmNb4rlQkUWc.",
+    "fullname": "fadias",
+    "phone": "24242424",
+    "address1": "peder lykkes vej 127",
+    "address2": "",
+    "city": "vestamager",
+    "zipcode": "2300",
+    "country": "Denmark"
+  }
+]
