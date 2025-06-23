@@ -1,22 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { FiSliders } from "react-icons/fi";
 import { GoDotFill } from "react-icons/go";
-import { Link, useParams, useNavigate } from "react-router";
+import { Link, useParams, useNavigate, useLocation } from "react-router";
 import productImg from "/public/product_1.svg";
 import ShopSidebar from "../components/ShopSidebar";
 import "../style/shop.scss";
 
 export default function Shop() {
   const [products, setProducts] = useState([]);
+
   const [loading, setLoading] = useState(true);
   const { brand } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
 
+  // Get category from query string (e.g. ?category=cd-afspillere)
+  const queryParams = new URLSearchParams(location.search);
+  const category = queryParams.get("category");
+
+  // Fetch all products
   useEffect(() => {
+
     setLoading(true);
     fetch("http://localhost:4000/products")
       .then((res) => res.json())
       .then((data) => {
+
         if (data.results) {
           setProducts(data.results);
         } else if (Array.isArray(data)) {
@@ -33,19 +42,20 @@ export default function Shop() {
       });
   }, []);
 
-  const handleBrandChange = (selectedBrand) => {
-    if (selectedBrand?.toLowerCase() === brand?.toLowerCase()) return;
-    navigate(selectedBrand ? `/shop/${selectedBrand.toLowerCase()}` : "/shop");
-  };
-
+  // Filtrering på brand + category
   const filteredProducts = !loading
-    ? brand
-      ? products.filter(
-          (p) =>
-            p.brand?.toLowerCase() === brand.toLowerCase()
-        )
-      : products
+    ? products.filter((p) => {
+        const matchesBrand = brand ? p.brand?.toLowerCase() === brand.toLowerCase() : true;
+        const matchesCategory = category ? p.category?.toLowerCase() === category.toLowerCase() : true;
+        return matchesBrand && matchesCategory;
+      })
     : [];
+
+  // Når der skiftes brand i sidebar
+  const handleBrandChange = (selectedBrand) => {
+    const newUrl = selectedBrand ? `/shop/${selectedBrand.toLowerCase()}${location.search}` : `/shop${location.search}`;
+    navigate(newUrl);
+  };
 
   return (
     <>
@@ -56,10 +66,11 @@ export default function Shop() {
           onBrandChange={handleBrandChange}
         />
         <section className="w-4/5 p-4 grid grid-cols-3 gap-4">
+
           {loading ? (
             <p>Loading products...</p>
           ) : filteredProducts.length === 0 ? (
-            <p>No products found for brand: {brand}</p>
+            <p>No products found for category: {category}, brand: {brand}</p>
           ) : (
             filteredProducts.map((product, index) => (
               <div
@@ -75,6 +86,7 @@ export default function Shop() {
                     alt={product.product_name}
                     className="my-2"
                   />
+
                 </Link>
                 <h3 className="text-center">{product.product_name}</h3>
                 <p className="font-bold mt-2">{product.price_dkk} DKK</p>

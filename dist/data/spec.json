@@ -1,0 +1,21 @@
+{"specifications": [
+     { 
+        
+     
+    "power_consumption": "20W",
+    "standby_power": "0.5W",
+    "finish": "Sort eller sølv",
+    "warranty_years": "2",
+    "dimensions": "430 x 90 x 320 mm",
+    "weight": "7.2 kg",
+    "inputs": ["RCA", "Optisk", "Bluetooth"],
+    "outputs": ["Højttalerterminaler", "Subwoofer udgang"],
+    "frequency_response": "20Hz - 20kHz",
+    "signal_to_noise_ratio": "100 dB",
+    "remote_control": true,
+    "display": "LED"
+        }
+ 
+        
+      ]    
+        }
