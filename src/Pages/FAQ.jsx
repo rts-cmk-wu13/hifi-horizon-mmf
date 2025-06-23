@@ -1,10 +1,22 @@
-import "../style/Faq.css";
+import { useEffect } from 'react';
+import { useLocation } from 'react-router';
+
 export default function FAQ() {
+  const { hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) {
+      const id = hash.replace('#', '');
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [hash]);
+
   return (
-    <>
-      <h1 className="mb-1 text-left text-[#495464] font-open-sans text-5xl font-semibold ">
-        Frequently Asked Questions
-      </h1>
+    <div className="p-10">
+      <h1 className="text-5xl font-bold mb-6 text-gray-800">Frequently Asked Questions</h1>
       <article
         id="faq"
         className="faq__wrapper flex flex-col gap-2 mb-2.5 p-5 bg-white"
@@ -14,6 +26,8 @@ export default function FAQ() {
           the right product for <br /> you. We take great care with all of our
           orders to ensure you are fully happy with the product.
         </h2>
+
+        
         <p>
           We aim to resolve any problems to your satisfaction. Please contact us
           directly, if, for any reason, you have an issue with your order, your
@@ -37,7 +51,8 @@ export default function FAQ() {
           must be able to certify the fault was present upon delivery and not by
           misuse.
         </p>
-        <section className="refund__policy">
+        <section id="section__refunds" className="refund__policy">
+          
           <h3 className="text-2xl text-black font-bold mb-1.5">REFUNDS</h3>
           <p>
             Once your returned item is received and inspected, we will send you
@@ -71,6 +86,8 @@ export default function FAQ() {
             us at sales@hifi-horizon.com.
           </p>
         </section>
+
+
         <section>
           <h3>SHIPPING</h3>
           <p>To return your product, you should mail your product to:</p>
@@ -97,7 +114,9 @@ export default function FAQ() {
             cannot guarantee that we will receive your returned item.
           </p>
         </section>
-        <section>
+
+
+        <section id="section__delivery">
           <h3>DELIVERY</h3>
           <p>
             Please check the condition of all products delivered as soon as they
@@ -128,7 +147,9 @@ export default function FAQ() {
             the delivery as ‘damaged’ and let us know as soon as possible.
           </p>
         </section>
-        <section>
+
+
+        <section id="section__returnsProcess">
           <h3>RETURNS PROCESS/YOUR STATUTORY RIGHTS</h3>
           <p>
             If you wish to return goods purchased online or over the phone, you
@@ -177,6 +198,8 @@ export default function FAQ() {
             instantly.
           </p>
         </section>
+
+
         <section>
           <h3>SALE ITEMS</h3>
           <p>
@@ -187,6 +210,8 @@ export default function FAQ() {
             sales@hifi-horizon.com.
           </p>
         </section>
+
+
         <section>
           <h3>EXCHANGES</h3>
           <p>
@@ -205,6 +230,6 @@ export default function FAQ() {
           </p>
         </section>
       </article>
-    </>
+    </div>
   );
 }

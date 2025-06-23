@@ -79,11 +79,11 @@ export default function Shopdetails() {
           </div>
         </div>
       </section>
-      <hr />
+    
 
-      <section className="specs mt-8">
-        <h1 className="mb-4">PRODUCT SPECIFICATIONS</h1>
-        <div className="specs__wrapper mb-8 ">
+      <section className="specs mt-8 grid grid-cols-[3rem_1fr_3rem]">
+        <h1 className="mb-4 font-semibold text-[1.5rem] uppercase col-2">product specifications</h1>
+        <div className="specs__wrapper mb-8 col-2">
           {product.product_specifications ? (
             <article className="bg_controller ">
               {Object.entries(product.product_specifications).map(

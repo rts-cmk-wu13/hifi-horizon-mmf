@@ -52,12 +52,12 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link to="/FAQ#delivery" className="hover:text-purple-500">
+              <Link to="/FAQ#section__delivery" className="hover:text-purple-500">
                 Delivery
               </Link>
             </li>
             <li>
-              <Link to="/FAQ#privacyPolicy" className="hover:text-purple-500">
+              <Link to="/FAQ#section__returnsProcess" className="hover:text-purple-500">
                 Privacy Policy
               </Link>
             </li>
