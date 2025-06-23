@@ -9,8 +9,6 @@ const CATEGORIES = [
   { label: "hojtalere", value: "hojtalere" },
 ];
 
-const user = null; 
-
 export default function Header() {
   const navigate = useNavigate();
   const [hoverShop, setHoverShop] = useState(false);
@@ -160,33 +158,8 @@ export default function Header() {
             onClick={handleSearch}
           ></i>
         </div>
-        {user ? (
-          // Display username when logged in
-          <div
-            style={{
-              padding: "10px",
-              color: "white",
-              backgroundColor: "transparent",
-              fontFamily: "sans-serif",
-              fontSize: "14px",
-            }}
-          >
-            {user.name}
-          </div>
-        ) : (
-          // Display login icon when not logged in
-          <Link
-            to="/login"
-            style={{
-              textDecorationLine: "underline",
-              textDecorationColor: "rgb(252, 80, 0)",
-              textDecorationThickness: "1px",
-            }}
-          >
-            <i className="fa-solid fa-user"></i>
-          </Link>
-        )}
-        <i className="fa-solid fa-cart-shopping"></i>
+        <i className="fa-solid fa-user cursor-pointer"></i>
+        <i className="fa-solid fa-cart-shopping cursor-pointer"></i>
       </div>
     </header>
   );
