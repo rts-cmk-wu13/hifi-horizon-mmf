@@ -1,7 +1,5 @@
-import { useState } from "react";
-
 const style = {
- h2: {
+  h2: {
     fontSize: "2rem",
     color: "#495464",
     marginBottom: "3rem",
@@ -31,7 +29,7 @@ const style = {
   },
   input: {
     marginBottom: "10px",
-    padding: "9px",
+    padding: "8px",
     width: "100%",
     borderRadius: "4px",
     border: "1px solid #ccc",
@@ -45,76 +43,43 @@ const style = {
   },
 };
 
-export default function ContactUs() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [status, setStatus] = useState("");
-
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!form.email.includes("@")) {
-      setStatus("Invalid email format.");
-      return;
-    }
-    if (form.message.length < 10) {
-      setStatus("Message must be at least 10 characters.");
-      return;
-    }
-    setStatus("Sending...");
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-      if (res.ok) {
-        setStatus("Message sent!");
-        setForm({ name: "", email: "", message: "" });
-      } else {
-        setStatus("Failed to send. Try again.");
-      }
-    } catch (error) {
-      setStatus("An error occurred. Please try again.");
-    }
-  };
-
+export default function Contact() {
   return (
-    <div style={{ maxWidth: 1000, margin: "2rem auto", background: "#fff", padding: 24, borderRadius: 8 }}>
-      <h1>Get in touch with us</h1>
-      <form onSubmit={handleSubmit} style={style.form}>
-        <input
-          name="name"
-          placeholder="Your Name"
-          value={form.name}
-          onChange={handleChange}
-          required
-          style={style.input}
-        />
-        <input
-          name="email"
-          type="email"
-          placeholder="Your Email"
-          value={form.email}
-          onChange={handleChange}
-          required
-          style={style.input}
-        />
-        <textarea
-          name="message"
-          placeholder="Your Message"
-          value={form.message}
-          onChange={handleChange}
-          required
-          style={{ ...style.input, minHeight: 100 }}
-        />
+    <div style={{ padding: "2rem", backgroundColor: "#D5D5D5" }}>
+      <h2 style={style.h2}>Get in touch with us</h2>
+
+      <form style={style.form}>
+        <label style={{ marginBottom: 5 }}>
+          Full name
+          <input type="text" style={style.input} />
+        </label>
+        <label style={{ marginBottom: 5 }}>
+          Email
+          <input type="email" style={style.input} />
+        </label>
+        <label style={{ marginBottom: 5 }}>
+          Subject
+          <input type="email" style={style.input} />
+        </label>
+        <label style={{ marginBottom: 5 }}>
+          Message
+          <textarea rows={4} style={style.input} />
+        </label>
         <button type="submit" style={style.button}>
-          Send
+          Submit
         </button>
       </form>
-      {status && <p style={style.p}>{status}</p>}
+      <p style={style.p}>
+        Visit our sister companies
+        <span style={{ color: "rgba(255, 105, 0, 1)" }}>
+          {" "}
+          Home Sound{" "}
+        </span>and{" "}
+        <span style={{ color: "rgba(255, 105, 0, 1)" }}>
+          The Movie Rooms
+        </span>{" "}
+        part of the HiFi Horizon Group.{" "}
+      </p>
     </div>
   );
 }
