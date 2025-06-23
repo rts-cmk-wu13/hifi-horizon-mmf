@@ -1,4 +1,5 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter } from "react-router-dom";
+import React, { lazy, Suspense } from "react";
 import Layout from "./Layout";
 import Home from "./Pages/Home";
 import NotFound from "./Pages/NotFound";
@@ -11,8 +12,11 @@ import Shopdetails from "./Pages/Details";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />,
-
+    element: (
+      <Suspense fallback={<Spinner />}>
+        <Layout />
+      </Suspense>
+    ),
     children: [
       {
         index: true,
@@ -29,18 +33,43 @@ const router = createBrowserRouter([
       {
         path: "About",
         element: <About />,
+        loader: async () => {
+          await new Promise(res => setTimeout(res, 2000)); 
+          return null;
+        }
       },
-
       {
         path: "Contact",
         element: <Contact />,
       },
-
       {
         path: "FAQ",
         element: <FAQ />,
       },
-
+      {
+        path: "login",
+        element: <Login />,
+      },
+      {
+        path: "opretprofil",
+        element: <OpretProfil />,
+      },
+      {
+        path: "myprofile",
+        element: <MyProfile />,
+      },
+      {
+        path: "logout",
+        element: <Logout />,
+      },
+      {
+        path: "change-password",
+        element: <ChangePasswordPage />,
+      },
+      {
+        path: "orders",
+        element: <Orders />,
+      },
       {
         path: "*",
         element: <NotFound />,

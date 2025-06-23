@@ -1,17 +1,20 @@
-import { Outlet } from "react-router";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
+import { Outlet, useNavigation } from "react-router-dom";
+import Footer from "./components/footer";
+import Header from "./components/header";
+import Spinner from "./components/load";
 import "./App.css";
 /* import Spinner from "./Pages/Load"; */
 import Chatbot from "./components/Chatbot";
 
-function Layout() {
+export default function Layout() {
+  const navigation = useNavigation();
+
   return (
     <>
       <Chatbot />
       <Header />
-
       <main>
+        {navigation.state === "loading" && <Spinner />}
         <Outlet />
         {/*  <Spinner /> */}
       </main>
@@ -23,5 +26,3 @@ function Layout() {
     </>
   );
 }
-
-export default Layout;
