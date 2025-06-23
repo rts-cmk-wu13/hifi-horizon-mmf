@@ -1,6 +1,6 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import React, { Suspense } from "react";
-import Spinner from "../components/load"; // Ensure Spinner is correctly imported
+import Spinner from "../components/load"; 
 
 
 export default function ProfileTabs({ children }) {

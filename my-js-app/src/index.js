@@ -3,16 +3,18 @@ const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
 const bcrypt = require('bcrypt');
+const nodemailer = require('nodemailer');
+require('dotenv').config(); // Load environment variables from .env file
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 const saltRounds = 10;
 
 app.use(cors());
-app.use(express.json());
+app.use(express.json()); // Parse JSON requests
 
 const USERS_FILE = path.resolve(__dirname, 'users.json');
 
-// Ensure users.json exists
 if (!fs.existsSync(USERS_FILE)) {
   fs.writeFileSync(USERS_FILE, JSON.stringify([], null, 2));
 }
@@ -20,7 +22,7 @@ if (!fs.existsSync(USERS_FILE)) {
 function loadUsers() {
   if (fs.existsSync(USERS_FILE)) {
     const data = fs.readFileSync(USERS_FILE, 'utf-8');
-    console.log('Loaded users:', data); // Debugging log
+    console.log('Loaded users:', data); 
     return JSON.parse(data);
   }
   return [];
@@ -28,7 +30,7 @@ function loadUsers() {
 
 function saveUsers(users) {
   try {
-    console.log('Saving users:', users); // Debugging log
+    console.log('Saving users:', users); 
     fs.writeFileSync(USERS_FILE, JSON.stringify(users, null, 2));
   } catch (error) {
     console.error('Error saving users:', error);
@@ -67,7 +69,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/profile', (req, res) => {
-    users = loadUsers(); // <-- reload from file
+    users = loadUsers(); 
     const { email } = req.query;
     const user = users.find(u => u.email === email);
     if (!user) {
@@ -112,6 +114,40 @@ app.patch('/api/profile', (req, res) => {
     res.json({ message: 'Profile updated' });
 });
 
+// Contact API Endpoint
+app.post('/api/contact', async (req, res) => {
+  console.log('Request received:', req.body);
+  const { name, email, message } = req.body;
+
+  try {
+    // Nodemailer Transporter
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.EMAIL_USER, // Your Gmail address from .env
+        pass: process.env.EMAIL_PASS, // Your Gmail App Password from .env
+      },
+    });
+
+    // Email Options
+    const mailOptions = {
+      from: email, // Sender's email
+      to: process.env.EMAIL_USER, // Your Gmail address (recipient)
+      subject: `Contact Form Message from ${name}`,
+      text: message,
+    };
+
+    // Send Email
+    const info = await transporter.sendMail(mailOptions);
+    console.log('Email sent:', info.response);
+    res.status(200).send({ message: 'Email sent successfully!' });
+  } catch (error) {
+    console.error('Error sending email:', error);
+    res.status(500).send({ error: 'Failed to send email. Please try again later.' });
+  }
+});
+
+// Start Server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
