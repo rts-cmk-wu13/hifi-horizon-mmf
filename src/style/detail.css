@@ -1,0 +1,54 @@
+.cart__bttn {
+  width: 374px;
+  height: 45px;
+  border-radius: 2px;
+  background: #ff6900;
+  box-shadow: 1px 2px 4px 0px rgba(0, 0, 0, 0.25);
+  color: white;
+  cursor: pointer;
+}
+
+.color_container {
+  display: flex;
+  flex-direction: column;
+
+  span {
+    display: grid;
+  }
+}
+
+button {
+  cursor: pointer;
+}
+
+hr {
+  background: #d2d2d2;
+  width: 85%;
+  height: 1px;
+  border: none;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 15px;
+}
+
+.stock {
+  color: #000;
+  font-family: "Open Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.specs__wrapper {
+  display: flex;
+
+  width: 500px;
+}
+.bg_controller {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 15px;
+}
+.bg_controller div:nth-child(odd) {
+  background: #e8e8e8;
+}

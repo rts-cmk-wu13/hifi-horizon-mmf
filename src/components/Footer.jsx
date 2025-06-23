@@ -7,52 +7,58 @@ import { FaTwitterSquare } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { GoSmiley } from "react-icons/go";
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
 
 export default function Footer() {
   return (
-    <section className="bg-black text-white p-6">
+    <section className="bg-black text-white p-6 px-4 py-12 mx-auto space-y-8 overflow-hidden sm:px-6 lg:px-8">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         <nav aria-label="Main footer" className="mb-4">
           <ul>
-            <li>
-              <a href="#" className="hover:text-purple-500">
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-purple-500">
-                Shop
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-purple-500">
-                About Us
-              </a>
-            </li>
+            <NavLink to={"/"} className="hover:text-purple-500">
+              <li>
+                <a href="#" className="hover:text-purple-500">
+                  Home
+                </a>
+              </li>
+            </NavLink>
+            <NavLink to={"/Shop"} className="hover:text-purple-500">
+              <li>
+                <a href="#" className="hover:text-purple-500">
+                  Shop
+                </a>
+              </li>{" "}
+            </NavLink>
+            <NavLink to={"/About"} className="hover:text-purple-500">
+              <li>
+                <a href="#" className="hover:text-purple-500">
+                  About Us
+                </a>
+              </li>{" "}
+            </NavLink>
           </ul>
         </nav>
         <section aria-labelledby="returns-refunds-heading">
           <ul>
             <li>
-              <Link to="/FAQ#test" className="hover:text-purple-500">
+              <Link to="/FAQ#section__refunds" className="hover:text-purple-500">
                 Returns & Refunds
               </Link>
             </li>
             <li>
-              <a href="#" className="hover:text-purple-500">
+              <Link to="/FAQ#delivery" className="hover:text-purple-500">
                 Delivery
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:text-purple-500">
+              <Link to="/FAQ#privacyPolicy" className="hover:text-purple-500">
                 Privacy Policy
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:text-purple-500">
+              <Link to="/FAQ#section__termsConditions" className="hover:text-purple-500">
                 Terms & Conditions
-              </a>
+              </Link>
             </li>
           </ul>
         </section>

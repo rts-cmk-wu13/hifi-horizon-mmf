@@ -1,21 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
 import React, { lazy, Suspense } from "react";
 import Layout from "./Layout";
-import Spinner from "./components/load";
-
-
-const Home = lazy(() => import("./Pages/Home"));
-const NotFound = lazy(() => import("./Pages/NotFound"));
-const Shop = lazy(() => import("./Pages/Shop"));
-const About = lazy(() => import("./Pages/About"));
-const Contact = lazy(() => import("./Pages/Contact"));
-const FAQ = lazy(() => import("./Pages/FAQ"));
-const Login = lazy(() => import("./Pages/logind"));
-const OpretProfil = lazy(() => import("./Pages/opretprofil"));
-const MyProfile = lazy(() => import("./Pages/myprofile"));
-const Logout = lazy(() => import("./Pages/logout"));
-const ChangePasswordPage = lazy(() => import("./components/Modify"));
-const Orders = lazy(() => import("./Pages/orders"));
+import Home from "./Pages/Home";
+import NotFound from "./Pages/NotFound";
+import Shop from "./Pages/Shop";
+import About from "./Pages/About";
+import Contact from "./Pages/Contact";
+import FAQ from "./Pages/FAQ";
+import Shopdetails from "./Pages/Details";
 
 const router = createBrowserRouter([
   {
@@ -31,9 +23,13 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "Shop",
+        path: "/shop/:brand?",
         element: <Shop />,
       },
+      {
+        path: "/shop/product/:id",
+        element: <Shopdetails />,
+      },      
       {
         path: "About",
         element: <About />,
@@ -78,6 +74,7 @@ const router = createBrowserRouter([
         path: "*",
         element: <NotFound />,
       },
+      
     ],
   },
 ]);
