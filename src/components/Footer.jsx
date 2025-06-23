@@ -17,23 +17,23 @@ export default function Footer() {
           <ul>
             <NavLink to={"/"} className="hover:text-purple-500">
               <li>
-                <a href="#" className="hover:text-purple-500">
+                
                   Home
-                </a>
+                
               </li>
             </NavLink>
             <NavLink to={"/Shop"} className="hover:text-purple-500">
               <li>
-                <a href="#" className="hover:text-purple-500">
+               
                   Shop
-                </a>
+              
               </li>{" "}
             </NavLink>
             <NavLink to={"/About"} className="hover:text-purple-500">
               <li>
-                <a href="#" className="hover:text-purple-500">
+                
                   About Us
-                </a>
+           
               </li>{" "}
             </NavLink>
           </ul>

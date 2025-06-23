@@ -55,7 +55,7 @@ export default function Shopdetails() {
                 <img src="/icons/silver.svg" alt="Silver" />
               </button>
               <button className="">
-                <img src="./icons/gold.svg" alt="gold" />
+                <img src="/icons/gold.svg" alt="gold" />
               </button>
             </div>
             <div className="flex gap-2 text-xs text-gray-500 ">
