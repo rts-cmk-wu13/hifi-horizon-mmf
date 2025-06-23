@@ -18,22 +18,28 @@ export default function Footer() {
             <NavLink to={"/"} className="hover:text-purple-500">
               <li>
                 
+
                   Home
                 
+
               </li>
             </NavLink>
             <NavLink to={"/Shop"} className="hover:text-purple-500">
               <li>
                
+              
                   Shop
               
+
               </li>{" "}
             </NavLink>
             <NavLink to={"/About"} className="hover:text-purple-500">
               <li>
                 
+
                   About Us
            
+
               </li>{" "}
             </NavLink>
           </ul>
