@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
-#root {
+/* #root {
   background-color: #f4f4f2;
-}
+} */
 .payment_Text {
   text-align: start;
 }

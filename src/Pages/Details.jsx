@@ -1,5 +1,6 @@
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
+
 import "../style/detail.css";
 import black from "/icons/black.svg";
 import Silver from "/icons/silver.svg";
@@ -10,17 +11,19 @@ import Loading from "../components/Loading";
 export default function Shopdetails() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetch(`https://hifi-api-cpmk.onrender.com/products/${id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setProduct(data);
+      .then((res) => {
+        if (!res.ok) throw new Error("we do not have that product");
+        return res.json();
       })
-      .catch((error) => {
-        console.error("Fejl ved hentning af produkt:", error);
-      });
+      .then((data) => setProduct(data))
+      .catch((error) => setError(error));
   }, [id]);
+
+  if (error) throw error;
 
   if (!product) return <Loading />;
 
@@ -89,7 +92,7 @@ export default function Shopdetails() {
       <section className="specs mt-8">
         <h1 className=" spec__header mb-4">PRODUCT SPECIFICATIONS</h1>
         <div className="specs__wrapper mb-8 ">
-          <span className="  w-2 bg-sky-500 mx-6"></span>
+          {/*  <span className="  w-2 bg-sky-500 mx-6"></span> */}
           {product.product_specifications ? (
             <article className="bg_controller">
               {Object.entries(product.product_specifications).map(
