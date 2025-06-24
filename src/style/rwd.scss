@@ -1,0 +1,25 @@
+.hamburger {
+  display: none;
+}
+
+.menu-overlay {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .hamburger {
+    display: flex;
+  }
+
+  nav {
+    display: none;
+  }
+
+  .menu-overlay {
+    display: flex;
+  }
+
+  .search-cart {
+    display: none;
+  }
+}

@@ -1,6 +1,7 @@
 import { Link, NavLink, useNavigate } from "react-router";
 import { useState, useEffect } from "react";
-import logo from "/public/logo_sml 1.png";
+import logo from "/logo_sml 1.png";
+import "../style/rwd.scss";
 
 const CATEGORIES = [
   { label: "CD Players", value: "cd-afspillere" },
@@ -12,15 +13,16 @@ const CATEGORIES = [
 export default function Header() {
   const navigate = useNavigate();
   const [hoverShop, setHoverShop] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Search state
   const [searchItem, setSearchItem] = useState("");
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
 
-  // Hent produkter ved mount
+  // Fetch products on mount
   useEffect(() => {
-    fetch("https://hifi-api-cpmk.onrender.com/products") // Skift URL til dit API endpoint
+    fetch("https://hifi-api-cpmk.onrender.com/products")
       .then((res) => res.json())
       .then((data) => {
         const allProducts = data.results ? data.results : data;
@@ -35,7 +37,6 @@ export default function Header() {
     setHoverShop(false);
   };
 
-  // Naviger til detail side på produkt id
   const handleSearch = () => {
     if (searchItem.trim() !== "") {
       const matchedProduct = products.find(
@@ -161,6 +162,61 @@ export default function Header() {
         <i className="fa-solid fa-user cursor-pointer"></i>
         <i className="fa-solid fa-cart-shopping cursor-pointer"></i>
       </div>
+
+      {/* Hamburger Menu */}
+      <div
+        className="hamburger lg:hidden flex flex-col cursor-pointer p-2"
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+      >
+        <span className="w-6 h-0.5 bg-white mb-1"></span>
+        <span className="w-6 h-0.5 bg-white mb-1"></span>
+        <span className="w-6 h-0.5 bg-white"></span>
+      </div>
+      {isMenuOpen && (
+        <div className="menu-overlay fixed top-0 left-0 w-full h-screen bg-black p-4 flex flex-col gap-4 z-50 lg:hidden">
+          <div className="flex justify-end">
+            <i
+              className="fa-solid fa-times text-yellow-500 text-xl cursor-pointer"
+              onClick={() => setIsMenuOpen(false)}
+            ></i>
+          </div>
+          <NavLink
+            to="/"
+            onClick={() => setIsMenuOpen(false)}
+            className="text-white text-lg"
+          >
+            <li className="list-none">
+              <img src={logo} alt="logoburger" />
+            </li>
+          </NavLink>
+          <NavLink
+            to="/shop"
+            onClick={() => setIsMenuOpen(false)}
+            className="text-white text-lg"
+          >
+            <li className="list-none">SHOP</li>
+          </NavLink>
+          <NavLink
+            to="/About"
+            onClick={() => setIsMenuOpen(false)}
+            className="text-white text-lg"
+          >
+            <li className="list-none">ABOUT US</li>
+          </NavLink>
+          <NavLink
+            to="/Contact"
+            onClick={() => setIsMenuOpen(false)}
+            className="text-white text-lg"
+          >
+            <li className="list-none">CONTACT US</li>
+          </NavLink>
+          <div className="flex items-center gap-5 mt-4">
+            <i className="fa-solid fa-magnifying-glass text-white text-xl cursor-pointer"></i>
+            <i className="fa-solid fa-user text-white text-xl cursor-pointer"></i>
+            <i className="fa-solid fa-cart-shopping text-yellow-500 text-xl cursor-pointer"></i>
+          </div>
+        </div>
+      )}
     </header>
   );
 }

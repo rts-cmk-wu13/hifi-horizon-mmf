@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import "./App.css";
 /* import Spinner from "./Pages/Load"; */
 import Chatbot from "./components/Chatbot";
+import Cookies from "./components/cookies";
 
 function Layout() {
   return (
@@ -14,6 +15,7 @@ function Layout() {
       <main>
         <Outlet />
         {/*  <Spinner /> */}
+        <Cookies />
       </main>
 
       <footer className="">
