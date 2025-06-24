@@ -125,8 +125,8 @@ export default function Header() {
         </NavLink>
       </nav>
 
-      <div className="flex items-center gap-5 relative">
-        <div className="relative flex items-center w-[252px] bg-white rounded-[0.1rem] p-1">
+      <div className="box_hide flex items-center gap-5 relative">
+        <div className=" relative flex items-center w-[252px] bg-white rounded-[0.1rem] p-1">
           <input
             type="text"
             placeholder="Search Products"
