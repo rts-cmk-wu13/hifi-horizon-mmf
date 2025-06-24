@@ -1,6 +1,5 @@
-import { Link, NavLink, useNavigate } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import logo from "/public/logo_sml 1.png";
 
 const CATEGORIES = [
   { label: "CD Players", value: "cd-afspillere" },
@@ -9,7 +8,7 @@ const CATEGORIES = [
   { label: "hojtalere", value: "hojtalere" },
 ];
 
-const user = null; 
+const user = null;
 
 export default function Header() {
   const navigate = useNavigate();
@@ -20,16 +19,42 @@ export default function Header() {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
 
-  // Hent produkter ved mount
+  // Cart state
+  const [cartQuantity, setCartQuantity] = useState(0);
+
+  // Fetch products on mount
   useEffect(() => {
-    fetch("http://localhost:4000/products") // Skift URL til dit API endpoint
+    fetch("http://localhost:4000/products")
       .then((res) => res.json())
       .then((data) => {
         const allProducts = data.results ? data.results : data;
         setProducts(allProducts);
         setFilteredProducts(allProducts);
       })
-      .catch((err) => console.error("Fejl ved hentning af produkter:", err));
+      .catch((err) => console.error("Error fetching products:", err));
+  }, []);
+
+  // Fetch cart quantity from localStorage
+  useEffect(() => {
+    const updateCartQuantity = () => {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const totalQuantity = cart.reduce((total, item) => total + item.quantity, 0);
+      setCartQuantity(totalQuantity);
+    };
+
+    // Update cart quantity on mount
+    updateCartQuantity();
+
+    // Listen for changes to the cart in localStorage
+    const handleStorageChange = () => {
+      updateCartQuantity();
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
   }, []);
 
   const handleCategoryClick = (category) => {
@@ -37,7 +62,6 @@ export default function Header() {
     setHoverShop(false);
   };
 
-  // Naviger til detail side på produkt id
   const handleSearch = () => {
     if (searchItem.trim() !== "") {
       const matchedProduct = products.find(
@@ -47,7 +71,7 @@ export default function Header() {
         navigate(`/shop/product/${matchedProduct.id}`);
         setSearchItem("");
       } else {
-        alert("Produkt ikke fundet");
+        alert("Product not found");
       }
     }
   };
@@ -80,8 +104,8 @@ export default function Header() {
         className="flex justify-center items-center relative"
         onMouseLeave={() => setHoverShop(false)}
       >
-        <Link to={"/"}>
-          <img src={logo} alt="Logo" className="w-12 h-12" />
+        <Link to="/">
+          <img src="/logo_sml 1.png" alt="Logo" className="w-12 h-12" />
         </Link>
 
         <div
@@ -113,13 +137,13 @@ export default function Header() {
         </div>
 
         <NavLink
-          to={"/About"}
+          to="/About"
           className="text-sm font-sans px-4 inline-block cursor-pointer"
         >
           <li className="list-none">ABOUT US</li>
         </NavLink>
         <NavLink
-          to={"/Contact"}
+          to="/Contact"
           className="text-sm font-sans px-4 inline-block cursor-pointer"
         >
           <li className="list-none">CONTACT US</li>
@@ -137,7 +161,7 @@ export default function Header() {
             className="pl-3 pr-10 py-2 w-[200px] text-black rounded-sm border-none focus:outline-none"
           />
 
-          {/* Autocomplete liste */}
+          {/* Autocomplete list */}
           {searchItem && filteredProducts.length > 0 && (
             <ul className="absolute top-full left-0 right-0 bg-white text-[#A39161] max-h-48 overflow-y-auto shadow-lg z-50">
               {filteredProducts.map((product) => (
@@ -161,7 +185,6 @@ export default function Header() {
           ></i>
         </div>
         {user ? (
-          // Display username when logged in
           <div
             style={{
               padding: "10px",
@@ -174,7 +197,6 @@ export default function Header() {
             {user.name}
           </div>
         ) : (
-          // Display login icon when not logged in
           <Link
             to="/login"
             style={{
@@ -186,7 +208,26 @@ export default function Header() {
             <i className="fa-solid fa-user"></i>
           </Link>
         )}
-        <i className="fa-solid fa-cart-shopping"></i>
+        <Link to="/Kurv" className="relative">
+          <i className="fa-solid fa-cart-shopping"></i>
+          {cartQuantity > 0 && (
+            <span
+              style={{
+                position: "absolute",
+                top: "-10px",
+                right: "-10px",
+                backgroundColor: "rgb(252, 80, 0)",
+                color: "white",
+                borderRadius: "50%",
+                padding: "2px 10px",
+                fontSize: "12px",
+                fontWeight: "bold",
+              }}
+            >
+              {cartQuantity}
+            </span>
+          )}
+        </Link>
       </div>
     </header>
   );

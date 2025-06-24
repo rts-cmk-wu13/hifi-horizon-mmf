@@ -1,6 +1,7 @@
+import React from "react";
 import { createBrowserRouter } from "react-router-dom";
-import React, { lazy, Suspense } from "react";
 import Layout from "./Layout";
+
 import Home from "./Pages/Home";
 import NotFound from "./Pages/NotFound";
 import Shop from "./Pages/Shop";
@@ -8,73 +9,37 @@ import About from "./Pages/About";
 import Contact from "./Pages/Contact";
 import FAQ from "./Pages/FAQ";
 import Shopdetails from "./Pages/Details";
+import Login from "./Pages/logind";
+import MyProfile from "./Pages/myprofile";
+import OpretProfil from "./Pages/opretprofil";
+import Logout from "./Pages/logout";
+import ChangePasswordPage from "./components/Modify";
+import Orders from "./Pages/orders";
+import Kurv from "./Pages/kurv";
+import Payment from "./Pages/payment"; // Import the Payment component
+import Invoice from "./Pages/invoice"; // Import the Invoice component
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <Suspense fallback={<Spinner />}>
-        <Layout />
-      </Suspense>
-    ),
+    element: <Layout />,
     children: [
-      {
-        index: true,
-        element: <Home />,
-      },
-      {
-        path: "/shop/:brand?",
-        element: <Shop />,
-      },
-      {
-        path: "/shop/product/:id",
-        element: <Shopdetails />,
-      },      
-      {
-        path: "About",
-        element: <About />,
-        loader: async () => {
-          await new Promise(res => setTimeout(res, 2000)); 
-          return null;
-        }
-      },
-      {
-        path: "Contact",
-        element: <Contact />,
-      },
-      {
-        path: "FAQ",
-        element: <FAQ />,
-      },
-      {
-        path: "login",
-        element: <Login />,
-      },
-      {
-        path: "opretprofil",
-        element: <OpretProfil />,
-      },
-      {
-        path: "myprofile",
-        element: <MyProfile />,
-      },
-      {
-        path: "logout",
-        element: <Logout />,
-      },
-      {
-        path: "change-password",
-        element: <ChangePasswordPage />,
-      },
-      {
-        path: "orders",
-        element: <Orders />,
-      },
-      {
-        path: "*",
-        element: <NotFound />,
-      },
-      
+      { index: true, element: <Home /> },
+      { path: "shop/:brand?", element: <Shop /> },
+      { path: "shop/product/:id", element: <Shopdetails /> },
+      { path: "about", element: <About /> },
+      { path: "contact", element: <Contact /> },
+      { path: "faq", element: <FAQ /> },
+      { path: "login", element: <Login /> },
+      { path: "opretprofil", element: <OpretProfil /> },
+      { path: "myprofile", element: <MyProfile /> },
+      { path: "logout", element: <Logout /> },
+      { path: "change-password", element: <ChangePasswordPage /> },
+      { path: "orders", element: <Orders /> },
+      { path: "kurv", element: <Kurv /> },
+      { path: "payment", element: <Payment /> }, // Payment route
+      { path: "invoice", element: <Invoice /> }, // Added Invoice route
+      { path: "*", element: <NotFound /> },
     ],
   },
 ]);

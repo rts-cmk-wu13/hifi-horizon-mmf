@@ -7,7 +7,7 @@ const style = {
     flexDirection: "column",
     backgroundColor: "#fff",
     borderRadius: "8px",
-    boxShadow: "0 0 10px rgba(0,0,0,0.1)",
+  
     width: "78%",
     marginBottom: "2rem",
     maxWidth: 600,
@@ -54,7 +54,7 @@ const style = {
 };
 
 export default function Orders() {
-  // Example data
+
   const profile = {
     Name: "Fadi",
     address1: "Peder lykkes vej",
@@ -119,7 +119,7 @@ export default function Orders() {
         <div style={{ marginTop: "1em" }}>
           HiFi Horizon (Edinburgh) Ltd is registered in Scotland. No: SC049298. Registered office: 2 Joppa Rd, Edinburgh EH15 2EU
           <br />
-          Designed by WU07 :)
+          Designed by WU07 :
         </div>
       </div>
     </ProfileTabs>

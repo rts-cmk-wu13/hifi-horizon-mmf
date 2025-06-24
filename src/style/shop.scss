@@ -9,7 +9,6 @@ $font-family: "Open Sans", sans-serif;
   color: white;
   cursor: pointer;
   transition: background 0.3s;
-      padding: 5px;
 
   &:hover {
     background: #e65c00;
@@ -127,36 +126,6 @@ label {
 .option-input.radio {
   border-radius: 50%;
 }
-<<<<<<< HEAD
-
-@media (max-width: 600px) {
-  .products__wrapper {
-    grid-template-columns: 1fr;
-    gap: 12px;
-    margin-top: 24px;
-  }
-
-  .product__bttn {
-    width: 100%;
-    min-width: 0;
-    font-size: 1rem;
-    padding: 10px;
-  }
-
-  .aside_box {
-    padding: 10px;
-  }
-
-  .product__link {
-    flex-direction: column;
-    gap: 10px;
-    align-items: flex-start;
-  }
-
-  input {
-    width: 28px;
-    height: 28px;
-=======
 .option-input.radio::after {
   border-radius: 50%;
 }
@@ -174,6 +143,15 @@ label {
     margin-left: -80px;
     margin-top: -80px;
     opacity: 0;
->>>>>>> 4cc1209d1c7acfe3407f646b90861a0e4df3410a
   }
+}
+@keyframes fly-to-basket {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(calc(100vw - 100px), -50vh) scale(0.5);
+    }
 }
