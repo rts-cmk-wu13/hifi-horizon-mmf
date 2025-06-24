@@ -57,7 +57,7 @@ export default function Shop() {
   // Når der skiftes brand i sidebar
   const handleBrandChange = (selectedBrand) => {
     const newUrl = selectedBrand
-      ? `/shop/${selectedBrand.toLowerCase()}${location.search}`
+      ? `shop/${selectedBrand.toLowerCase()}${location.search}`
       : `/shop${location.search}`;
     navigate(newUrl);
   };

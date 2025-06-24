@@ -7,11 +7,14 @@ import Silver from "/icons/silver.svg";
 import Gold from "/icons/gold.svg";
 import { GoDotFill } from "react-icons/go";
 import Loading from "../components/Loading";
+import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
 
 export default function Shopdetails() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [error, setError] = useState(null);
+  const [currentImg, setCurrentImg] = useState(0);
 
   useEffect(() => {
     fetch(`https://hifi-api-cpmk.onrender.com/products/${id}`)
@@ -27,18 +30,65 @@ export default function Shopdetails() {
 
   if (!product) return <Loading />;
 
+  // Support both single image and array of images
+  const images = Array.isArray(product.image_url)
+    ? product.image_url
+    : [product.image_url];
+
+  const goToPrev = () =>
+    setCurrentImg((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  const goToNext = () =>
+    setCurrentImg((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+  const goToIndex = (idx) => setCurrentImg(idx);
+
   return (
     <>
       <h1 className="text-4xl font-bold mb-8 text-gray-700">
         {product.product_name}
       </h1>
       <section className="flex flex-col md:flex-row gap-10 bg-[#F4F4F2] p-8 rounded-lg shadow-md detail__wrapper">
-        <div className="flex-1 flex flex-col items-center">
+        <div className="flex-1 flex flex-col items-center relative">
+          {/* Carousel arrows */}
+          <button
+            className="absolute left-0 top-1/2 -translate-y-1/2 text-gray-300 hover:text-gray-600 text-5xl z-10"
+            onClick={goToPrev}
+            aria-label="Previous image"
+            style={{ background: "none", border: "none" }}
+          >
+            <MdOutlineKeyboardArrowLeft />
+          </button>
           <img
-            src={product.image_url}
+            src={images[currentImg]}
             alt={product.product_name}
             className="rounded-lg object-contain w-80max-w-md w-[337px] h-[182px] "
           />
+          <button
+            className="absolute right-0 top-1/2 -translate-y-1/2 text-gray-300 hover:text-gray-600 text-5xl z-10"
+            onClick={goToNext}
+            aria-label="Next image"
+            style={{ background: "none", border: "none" }}
+          >
+            <MdOutlineKeyboardArrowRight />
+          </button>
+          {/* Dots: always 3, center is active */}
+          <div className="flex gap-2 justify-center mt-4">
+            {images.length > 1 &&
+              [-1, 0, 1].map((offset) => {
+                const idx =
+                  (currentImg + offset + images.length) % images.length;
+                return (
+                  <button
+                    key={idx}
+                    onClick={() => goToIndex(idx)}
+                    className={`w-3 h-3 rounded-full ${
+                      offset === 0 ? "bg-gray-400" : "bg-gray-200"
+                    }`}
+                    style={{ outline: "none", border: "none" }}
+                    aria-label={`Go to image ${idx + 1}`}
+                  />
+                );
+              })}
+          </div>
         </div>
 
         <div className=" md:block w-px bg-gray-300 mx-6"></div>
