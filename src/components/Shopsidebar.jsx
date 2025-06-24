@@ -2,9 +2,10 @@ import { useState } from "react";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { GoDotFill } from "react-icons/go";
 
-export default function ShopSidebar({ selectedBrand, onBrandChange }) {
+export default function ShopSidebar({ selectedBrand, onBrandChange, selectedCategory, onCategoryChange }) {
   const [open, setOpen] = useState({
     brand: true,
+    category: true,
     color: true,
     price: true,
   });
@@ -20,10 +21,19 @@ export default function ShopSidebar({ selectedBrand, onBrandChange }) {
     "Harbeth",
     "Manley",
     "Parasound",
-    "Pro-Ject"
+    "Pro-Ject",
   ];
 
-  const brandToUrl = (brand) => brand.toLowerCase();
+  const CATEGORIES = [
+    "CD Players",
+    "DVD Players",
+    "Amplifiers",
+    "Speakers",
+    "Turntables",
+  ];
+
+  const brandToUrl = (brand) => brand?.toLowerCase().trim();
+  const categoryToUrl = (category) => category?.toLowerCase().replace(/\s+/g, "-").trim();
 
   return (
     <aside className="w-1/5 p-4">
@@ -65,7 +75,51 @@ export default function ShopSidebar({ selectedBrand, onBrandChange }) {
                 checked={!selectedBrand}
                 onChange={() => onBrandChange("")}
               />
-              <label className="mb-0 mr-2">Alle brands</label>
+              <label className="mb-0 mr-2">All Brands</label>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Category Filter */}
+      <div className="mb-4">
+        <div
+          className="header__dropdown flex justify-between items-center cursor-pointer"
+          onClick={() => toggle("category")}
+        >
+          <h3>Category</h3>
+          <RiArrowDropDownLine
+            className={`text-5xl transition-transform dropdown__icon ${
+              open.category ? "rotate-180" : ""
+            }`}
+          />
+        </div>
+        {open.category && (
+          <div className="mt-2 space-y-2">
+            {CATEGORIES.map((category) => (
+              <div className="filters_text" key={category}>
+                <input
+                  type="radio"
+                  className="option-input radio ml-2"
+                  name="category"
+                  value={categoryToUrl(category)}
+                  checked={selectedCategory === categoryToUrl(category)}
+                  onChange={() => onCategoryChange(categoryToUrl(category))}
+                />
+                <label className="mb-0 mr-2 capitalize">{category}</label>
+              </div>
+            ))}
+            {/* Clear filter */}
+            <div className="filters_text">
+              <input
+                type="radio"
+                className="option-input radio ml-2"
+                name="category"
+                value=""
+                checked={!selectedCategory}
+                onChange={() => onCategoryChange("")}
+              />
+              <label className="mb-0 mr-2">All Categories</label>
             </div>
           </div>
         )}

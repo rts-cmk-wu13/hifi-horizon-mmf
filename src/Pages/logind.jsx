@@ -66,6 +66,10 @@ export default function Login() {
     remember: false,
   });
   const [msg, setMsg] = useState("");
+  const [user, setUser] = useState(() => {
+    const stored = localStorage.getItem("user");
+    return stored ? JSON.parse(stored) : null;
+  });
 
   const handleChange = (e) => {
     const { id, value, type, checked } = e.target;
@@ -85,8 +89,9 @@ export default function Login() {
         body: JSON.stringify(form),
       });
       if (res.ok) {
-        const { email } = form;
-        localStorage.setItem("userEmail", email);
+        const user = await res.json(); // Expecting { name, email, ... }
+        localStorage.setItem("user", JSON.stringify(user));
+        window.dispatchEvent(new Event("userUpdated")); // Notify header to update
         window.location.href = "/myprofile";
       } else {
         setMsg("Login failed. Please check your credentials.");

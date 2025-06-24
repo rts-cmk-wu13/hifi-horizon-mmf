@@ -5,10 +5,13 @@ import black from "/icons/black.svg";
 import Silver from "/icons/silver.svg";
 import Gold from "/icons/gold.svg";
 import { GoDotFill } from "react-icons/go";
+import { useNavigate } from "react-router-dom"; // Add this import
 
 export default function Shopdetails() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
+  const [quantity, setQuantity] = useState(1); // Add quantity state
+  const navigate = useNavigate(); // For optional navigation or feedback
 
   useEffect(() => {
     fetch(`https://hifi-api-cpmk.onrender.com/products/${id}`)
@@ -22,6 +25,29 @@ export default function Shopdetails() {
   }, [id]);
 
   if (!product) return <p>Indlæser produkt...</p>;
+
+  // Add to cart handler
+  const handleAddToCart = () => {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const existingIndex = cart.findIndex((item) => item.id === product.id);
+
+    if (existingIndex !== -1) {
+      // Update quantity if already in cart
+      cart[existingIndex].quantity += quantity;
+    } else {
+      // Add new product to cart
+      cart.push({
+        id: product.id,
+        product_name: product.product_name,
+        price_dkk: product.price_dkk,
+        image_url: product.image_url,
+        quantity: quantity,
+      });
+    }
+    localStorage.setItem("cart", JSON.stringify(cart));
+    window.dispatchEvent(new Event("cartUpdated")); // For header badge update
+    alert("Product added to cart!");
+  };
 
   return (
     <>
@@ -74,10 +100,22 @@ export default function Shopdetails() {
             </span>
           </p>
           <div className="flex items-center gap-4 mb-6 justify-evenly ">
-            <button className="text-black text-3xl">-</button>
-            <span className="text-lg">1</span>
-            <button className="text-black text-3xl">+</button>
-            <button className="cart__bttn">Add to cart</button>
+            <button
+              className="text-black text-3xl"
+              onClick={() => setQuantity((q) => (q > 1 ? q - 1 : 1))}
+            >
+              -
+            </button>
+            <span className="text-lg">{quantity}</span>
+            <button
+              className="text-black text-3xl"
+              onClick={() => setQuantity((q) => q + 1)}
+            >
+              +
+            </button>
+            <button className="cart__bttn" onClick={handleAddToCart}>
+              Add to cart
+            </button>
           </div>
         </div>
       </section>

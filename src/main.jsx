@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
 import router from "./router";
 import "./index.css";
-import "./App.css"; // Assuming you have some global styles
+import "./App.css";
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(

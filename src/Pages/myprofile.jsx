@@ -30,7 +30,11 @@ export default function MyProfile() {
   const [editingField, setEditingField] = useState(null);
   const [editValue, setEditValue] = useState("");
   const [msg, setMsg] = useState("");
-  const email = localStorage.getItem("userEmail");
+  const [user, setUser] = useState(() => {
+    const stored = localStorage.getItem("user");
+    return stored ? JSON.parse(stored) : null;
+  });
+  const email = user ? user.email : null;
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -46,7 +50,8 @@ export default function MyProfile() {
   }, [email]);
 
   const handleLogout = () => {
-    localStorage.removeItem("userEmail");
+    localStorage.removeItem("user");
+    setUser(null);
     navigate("/login");
   };
 
