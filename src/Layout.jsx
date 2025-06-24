@@ -1,5 +1,5 @@
 import { Outlet, useNavigation } from "react-router-dom";
-import Footer from "./components/footer";
+import Footer from "./components/Footer";
 import Header from "./components/header";
 import Spinner from "./components/load";
 import Chatbot from "./components/Chatbot";
