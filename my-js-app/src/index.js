@@ -10,7 +10,14 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const saltRounds = 10;
 
-app.use(cors());
+const allowedOrigins = [
+
+  'https://hifi-horizon-mmf-1.onrender.com' // your Render static site
+];
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true
+}));
 app.use(express.json()); // Parse JSON requests
 
 const USERS_FILE = path.resolve(__dirname, 'users.json');
@@ -149,6 +156,9 @@ app.post('/api/contact', async (req, res) => {
 
 // Start Server
 app.listen(PORT, () => {
-  console.log(`Server is running on https://hifi-horizon-mmf-1.onrender.com/${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
+  if (process.env.RENDER) {
+    console.log('Running on Render. Public URL will be provided by Render dashboard.');
+  }
 });
 
