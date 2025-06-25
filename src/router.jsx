@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "./Layout";
 import Spinner from "./components/load"; // Use your Spinner
+import Takside from "./Pages/tak";
 
 // Lazy load all pages
 const Home = React.lazy(() => import("./Pages/Home"));
@@ -26,22 +27,142 @@ const router = createBrowserRouter([
     path: "/",
     element: <Layout />,
     children: [
-      { index: true, element: <Suspense fallback={<Spinner />}><Home /></Suspense> },
-      { path: "shop/:brand?", element: <Suspense fallback={<Spinner />}><Shop /></Suspense> },
-      { path: "shop/product/:id", element: <Suspense fallback={<Spinner />}><Shopdetails /></Suspense> },
-      { path: "about", element: <Suspense fallback={<Spinner />}><About /></Suspense> },
-      { path: "contact", element: <Suspense fallback={<Spinner />}><Contact /></Suspense> },
-      { path: "faq", element: <Suspense fallback={<Spinner />}><FAQ /></Suspense> },
-      { path: "login", element: <Suspense fallback={<Spinner />}><Login /></Suspense> },
-      { path: "opretprofil", element: <Suspense fallback={<Spinner />}><OpretProfil /></Suspense> },
-      { path: "myprofile", element: <Suspense fallback={<Spinner />}><MyProfile /></Suspense> },
-      { path: "logout", element: <Suspense fallback={<Spinner />}><Logout /></Suspense> },
-      { path: "change-password", element: <Suspense fallback={<Spinner />}><ChangePasswordPage /></Suspense> },
-      { path: "orders", element: <Suspense fallback={<Spinner />}><Orders /></Suspense> },
-      { path: "kurv", element: <Suspense fallback={<Spinner />}><Kurv /></Suspense> },
-      { path: "payment", element: <Suspense fallback={<Spinner />}><Payment /></Suspense> },
-      { path: "invoice", element: <Suspense fallback={<Spinner />}><Invoice /></Suspense> },
-      { path: "*", element: <Suspense fallback={<Spinner />}><NotFound /></Suspense> },
+      {
+        index: true,
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <Home />
+          </Suspense>
+        ),
+      },
+      {
+        path: "shop/:brand?",
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <Shop />
+          </Suspense>
+        ),
+      },
+      {
+        path: "shop/product/:id",
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <Shopdetails />
+          </Suspense>
+        ),
+      },
+      {
+        path: "about",
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <About />
+          </Suspense>
+        ),
+      },
+      {
+        path: "contact",
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <Contact />
+          </Suspense>
+        ),
+      },
+      {
+        path: "faq",
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <FAQ />
+          </Suspense>
+        ),
+      },
+      {
+        path: "login",
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <Login />
+          </Suspense>
+        ),
+      },
+      {
+        path: "opretprofil",
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <OpretProfil />
+          </Suspense>
+        ),
+      },
+      {
+        path: "myprofile",
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <MyProfile />
+          </Suspense>
+        ),
+      },
+      {
+        path: "logout",
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <Logout />
+          </Suspense>
+        ),
+      },
+      {
+        path: "change-password",
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <ChangePasswordPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: "orders",
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <Orders />
+          </Suspense>
+        ),
+      },
+      {
+        path: "kurv",
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <Kurv />
+          </Suspense>
+        ),
+      },
+      {
+        path: "payment",
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <Payment />
+          </Suspense>
+        ),
+      },
+      {
+        path: "tak",
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <Takside />
+          </Suspense>
+        ),
+      },
+      {
+        path: "invoice",
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <Invoice />
+          </Suspense>
+        ),
+      },
+      {
+        path: "*",
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <NotFound />
+          </Suspense>
+        ),
+      },
     ],
   },
 ]);
