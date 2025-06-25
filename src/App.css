@@ -25,3 +25,7 @@ footer {
   bottom: 0;
   left: auto;
 }
+header a:hover,
+.fa:hover {
+  color: orange;
+}

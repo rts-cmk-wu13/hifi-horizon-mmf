@@ -159,9 +159,18 @@ export default function Header() {
             onClick={handleSearch}
           ></i>
         </div>
-        <i className="fa-solid fa-user cursor-pointer"></i>
-        <i className="fa-solid fa-cart-shopping cursor-pointer"></i>
+        {/*  <i className="fa-solid fa-user cursor-pointer"></i>
+        <i className="fa-solid fa-cart-shopping cursor-pointer"></i> */}
       </div>
+
+      {/* Show icons only when menu is closed */}
+      {!isMenuOpen && (
+        <div className="flex items-center gap-5 mt-4">
+          {/*  <i className="fa-solid fa-magnifying-glass text-white text-xl cursor-pointer"></i> */}
+          <i className="fa-solid fa-user text-white  hover:text-orange-500 text-xl cursor-pointer"></i>
+          <i className="fa-solid fa-cart-shopping hover:text-orange-500 text-xl cursor-pointer"></i>
+        </div>
+      )}
 
       {/* Hamburger Menu */}
       <div
@@ -176,7 +185,7 @@ export default function Header() {
         <div className="menu-overlay fixed top-0 left-0 w-full h-screen bg-black p-4 flex flex-col gap-4 z-50 lg:hidden">
           <div className="flex justify-end">
             <i
-              className="fa-solid fa-times text-yellow-500 text-xl cursor-pointer"
+              className="fa-solid fa-times  text-xl cursor-pointer"
               onClick={() => setIsMenuOpen(false)}
             ></i>
           </div>
@@ -210,11 +219,6 @@ export default function Header() {
           >
             <li className="list-none">CONTACT US</li>
           </NavLink>
-          <div className="flex items-center gap-5 mt-4">
-            <i className="fa-solid fa-magnifying-glass text-white text-xl cursor-pointer"></i>
-            <i className="fa-solid fa-user text-white text-xl cursor-pointer"></i>
-            <i className="fa-solid fa-cart-shopping text-yellow-500 text-xl cursor-pointer"></i>
-          </div>
         </div>
       )}
     </header>

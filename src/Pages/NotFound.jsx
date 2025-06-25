@@ -1,7 +1,9 @@
 import { Link } from "react-router";
+import Chatbot from "../components/Chatbot";
 export default function NotFound() {
   return (
     <>
+      <Chatbot />
       <style>{`
         @keyframes float {
           0% { transform: translateY(0); }

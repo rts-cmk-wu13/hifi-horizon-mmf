@@ -14,6 +14,10 @@
 } */
 .godhbL {
   fill: #ff6900 !important;
+  position: fixed;
+  bottom: 15px;
+  left: 90%;
+  z-index: 1001;
 }
 .rsc-float-button svg {
   fill: rgba(255, 105, 0, 0.9) !important;

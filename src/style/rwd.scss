@@ -7,10 +7,27 @@
 }
 
 @media (max-width: 1024px) {
+  header {
+    width: 100%;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    margin-top: 0;
+    background: #000;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    justify-items: center;
+
+    height: 70px;
+  }
+  footer {
+    display: none;
+  }
+
   .hamburger {
     display: flex;
   }
-
   nav {
     display: none;
   }
@@ -21,9 +38,9 @@
     justify-content: center;
   }
 
-  .search-cart {
+  /*  .search-cart {
     display: none;
-  }
+  } */
   .fa-times {
     font-size: 60px;
     position: absolute;

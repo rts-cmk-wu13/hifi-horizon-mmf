@@ -1,6 +1,7 @@
 import { isRouteErrorResponse, Link, useRouteError } from "react-router";
 import Footer from "../components/Footer";
-
+import Chatbot from "../components/Chatbot";
+<Chatbot />;
 export function ErrorBoundary() {
   const error = useRouteError();
 
