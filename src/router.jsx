@@ -13,7 +13,6 @@ import Login from "./Pages/logind";
 import MyProfile from "./Pages/myprofile";
 import OpretProfil from "./Pages/opretprofil";
 import Logout from "./Pages/logout";
-import ChangePasswordPage from "./components/Modify";
 import Orders from "./Pages/orders";
 import Kurv from "./Pages/kurv";
 import Payment from "./Pages/payment";
@@ -63,10 +62,6 @@ const router = createBrowserRouter([
       {
         path: "logout",
         element: <Logout />,
-      },
-      {
-        path: "change-password",
-        element: <ChangePasswordPage />,
       },
       {
         path: "orders",
