@@ -1,0 +1,45 @@
+/* .chat__bot {
+  fill: rgba(255, 105, 0, 0.9);
+  width: 49px;
+  height: 45.498px;
+  position: fixed;s
+  bottom: 15px;
+  left: 90%;
+
+  flex-shrink: 0;
+  background-color: white;
+  border-radius: 50px;
+  background: #fff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+} */
+.godhbL {
+  fill: #ff6900 !important;
+}
+.rsc-float-button svg {
+  fill: rgba(255, 105, 0, 0.9) !important;
+}
+.rsc-container {
+  background: #f4f4f2 !important;
+}
+
+.rsc-header {
+  background: #444 !important;
+  color: #fff !important;
+}
+
+.rsc-message {
+  background: #f4f4f2 !important;
+  color: #fff !important;
+}
+.rsc-float-button {
+  background-color: #ffffff !important;
+  border: none !important;
+}
+.hQsUiY {
+  width: 295px;
+  height: 80px;
+  border-radius: 3px;
+  background: #fff !important;
+  box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.25) !important;
+  color: #000000 !important;
+}
