@@ -7,7 +7,7 @@ export default function Spinner() {
     const timer = setTimeout(() => setShow(true), 2000); // Show spinner after 2 seconds
     return () => clearTimeout(timer);
   }, []);
-
+// test
   if (!show) return null;
 
   return (
