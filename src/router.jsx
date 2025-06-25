@@ -4,7 +4,6 @@ import Layout from "./Layout";
 
 // Eagerly import all pages
 import Home from "./Pages/Home";
-import NotFound from "./Pages/NotFound";
 import Shop from "./Pages/Shop";
 import About from "./Pages/About";
 import Contact from "./Pages/Contact";
@@ -84,10 +83,6 @@ const router = createBrowserRouter([
       {
         path: "invoice",
         element: <Invoice />,
-      },
-      {
-        path: "*",
-        element: <NotFound />,
       },
     ],
   },
