@@ -86,7 +86,7 @@ export default function Shop() {
                 <h3 className="mr-2 flex">
                   Compare <FiSliders />
                 </h3>
-                <Link to={`/product/${product.id}`}>
+                <Link to={`shop/product/${product.id}`}>
                   <img
                     src={product.image_url || productImg}
                     alt={product.product_name}
