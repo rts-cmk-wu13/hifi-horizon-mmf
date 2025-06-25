@@ -149,7 +149,6 @@ app.post('/api/contact', async (req, res) => {
 
 // Start Server
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running on https://hifi-horizon-mmf-1.onrender.com/${PORT}`);
 });
-VITE_API_URL=http://localhost:3000
 
