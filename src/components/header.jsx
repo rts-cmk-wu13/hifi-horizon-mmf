@@ -44,7 +44,7 @@ export default function Header() {
 
 	// Fetch products on mount
 	useEffect(() => {
-		fetch("http://localhost:4000/products")
+		fetch("https://mmf-hifi-horizon-api.onrender.com/products")
 			.then((res) => res.json())
 			.then((data) => {
 				const allProducts = data.results ? data.results : data;
