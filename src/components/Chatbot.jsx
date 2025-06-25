@@ -2,6 +2,7 @@ import "../style/Chatbot.css";
 import ChatBot from "react-simple-chatbot";
 import { GoDotFill } from "react-icons/go";
 import { IoChatbubble } from "react-icons/io5";
+import { useEffect } from "react";
 
 function Header() {
   return (
@@ -24,6 +25,58 @@ function Header() {
 }
 
 export default function Chatbot() {
+  useEffect(() => {
+    let observer = null;
+    let messageContainer = null;
+    let resizeHandler = null;
+
+    // Helper: scroll to bottom
+    const scrollToBottom = () => {
+      if (messageContainer) {
+        if ("scrollBehavior" in document.documentElement.style) {
+          messageContainer.scrollTo({
+            top: messageContainer.scrollHeight,
+            behavior: "smooth",
+          });
+        } else {
+          messageContainer.scrollTop = messageContainer.scrollHeight;
+        }
+      }
+    };
+
+    // Mutation observer callback
+    const onMutation = (mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type === "childList" && mutation.addedNodes.length > 0) {
+          scrollToBottom();
+        }
+      });
+    };
+
+    // Resize handler
+    resizeHandler = () => {
+      scrollToBottom();
+    };
+
+    // Wait for the chatbot to mount
+    const interval = setInterval(() => {
+      messageContainer = document.querySelector(".rsc-content");
+      if (messageContainer) {
+        observer = new window.MutationObserver(onMutation);
+        observer.observe(messageContainer, { childList: true });
+        window.addEventListener("resize", resizeHandler);
+        clearInterval(interval);
+      }
+    }, 300);
+
+    // Cleanup
+    return () => {
+      if (observer) observer.disconnect();
+      window.removeEventListener("resize", resizeHandler);
+      clearInterval(interval);
+    };
+  }, []);
+
   return (
     <>
       <ChatBot
