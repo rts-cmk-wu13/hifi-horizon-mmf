@@ -1,4 +1,4 @@
-import "../style/Chatbot.css";
+import "../style/chatbot.css";
 import ChatBot from "react-simple-chatbot";
 import { GoDotFill } from "react-icons/go";
 import { IoChatbubble } from "react-icons/io5";
