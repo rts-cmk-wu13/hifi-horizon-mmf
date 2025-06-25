@@ -1,15 +1,20 @@
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 import "../style/detail.css";
-
+import black from "/icons/black.svg";
+import Silver from "/icons/silver.svg";
+import Gold from "/icons/gold.svg";
 import { GoDotFill } from "react-icons/go";
+import { useNavigate } from "react-router-dom"; // Add this import
 
 export default function Shopdetails() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
+  const [quantity, setQuantity] = useState(1); // Add quantity state
+  const navigate = useNavigate(); // For optional navigation or feedback
 
   useEffect(() => {
-    fetch(`https://hifi-api-cpmk.onrender.com/products/${id}`)
+    fetch(`https://mmf-hifi-horizon-api.onrender.com/products/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setProduct(data);
@@ -20,6 +25,29 @@ export default function Shopdetails() {
   }, [id]);
 
   if (!product) return <p>Indlæser produkt...</p>;
+
+  // Add to cart handler
+  const handleAddToCart = () => {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const existingIndex = cart.findIndex((item) => item.id === product.id);
+
+    if (existingIndex !== -1) {
+      // Update quantity if already in cart
+      cart[existingIndex].quantity += quantity;
+    } else {
+      // Add new product to cart
+      cart.push({
+        id: product.id,
+        product_name: product.product_name,
+        price_dkk: product.price_dkk,
+        image_url: product.image_url,
+        quantity: quantity,
+      });
+    }
+    localStorage.setItem("cart", JSON.stringify(cart));
+    window.dispatchEvent(new Event("cartUpdated")); // For header badge update
+    alert("Product added to cart!");
+  };
 
   return (
     <>
@@ -49,13 +77,13 @@ export default function Shopdetails() {
           <div className="color_container mb-10 mt-11 ">
             <div className="flex gap-2">
               <button className="">
-                <img src="/icons/black.svg" alt="Black" />
+                <img src={black} alt="Black" />
               </button>
               <button className="">
-                <img src="/icons/silver.svg" alt="Silver" />
+                <img src={Silver} alt="Silver" />
               </button>
               <button className="">
-                <img src="/icons/gold.svg" alt="gold" />
+                <img src={Gold} alt="gold" />
               </button>
             </div>
             <div className="flex gap-2 text-xs text-gray-500 ">
@@ -72,18 +100,30 @@ export default function Shopdetails() {
             </span>
           </p>
           <div className="flex items-center gap-4 mb-6 justify-evenly ">
-            <button className="text-black text-3xl">-</button>
-            <span className="text-lg">1</span>
-            <button className="text-black text-3xl">+</button>
-            <button className="cart__bttn">Add to cart</button>
+            <button
+              className="text-black text-3xl"
+              onClick={() => setQuantity((q) => (q > 1 ? q - 1 : 1))}
+            >
+              -
+            </button>
+            <span className="text-lg">{quantity}</span>
+            <button
+              className="text-black text-3xl"
+              onClick={() => setQuantity((q) => q + 1)}
+            >
+              +
+            </button>
+            <button className="cart__bttn" onClick={handleAddToCart}>
+              Add to cart
+            </button>
           </div>
         </div>
       </section>
-    
+      <hr />
 
-      <section className="specs mt-8 grid grid-cols-[3rem_1fr_3rem]">
-        <h1 className="mb-4 font-semibold text-[1.5rem] uppercase col-2">product specifications</h1>
-        <div className="specs__wrapper mb-8 col-2">
+      <section className="specs mt-8">
+        <h1 className="mb-4">PRODUCT SPECIFICATIONS</h1>
+        <div className="specs__wrapper mb-8 ">
           {product.product_specifications ? (
             <article className="bg_controller ">
               {Object.entries(product.product_specifications).map(

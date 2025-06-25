@@ -1,6 +1,8 @@
-import { createBrowserRouter } from "react-router";
-import React, { lazy, Suspense } from "react";
+import { createBrowserRouter } from "react-router-dom";
+import React from "react";
 import Layout from "./Layout";
+
+// Eagerly import all pages
 import Home from "./Pages/Home";
 import NotFound from "./Pages/NotFound";
 import Shop from "./Pages/Shop";
@@ -9,44 +11,42 @@ import Contact from "./Pages/Contact";
 import FAQ from "./Pages/FAQ";
 import Shopdetails from "./Pages/Details";
 import Login from "./Pages/logind";
-import OpretProfil from "./Pages/opretprofil";
 import MyProfile from "./Pages/myprofile";
+import OpretProfil from "./Pages/opretprofil";
 import Logout from "./Pages/logout";
 import ChangePasswordPage from "./components/Modify";
 import Orders from "./Pages/orders";
+import Kurv from "./Pages/kurv";
+import Payment from "./Pages/payment";
+import Invoice from "./Pages/invoice";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
-
-
-
     children: [
       {
         index: true,
         element: <Home />,
       },
       {
-        path: "/shop/:brand?",
+        path: "shop/:brand?",
         element: <Shop />,
       },
       {
-        path: "/shop/product/:id",
+        path: "shop/product/:id",
         element: <Shopdetails />,
-      },      
+      },
       {
-        path: "About",
+        path: "about",
         element: <About />,
       },
-
       {
-        path: "Contact",
+        path: "contact",
         element: <Contact />,
       },
-
       {
-        path: "FAQ",
+        path: "faq",
         element: <FAQ />,
       },
       {
@@ -73,12 +73,22 @@ const router = createBrowserRouter([
         path: "orders",
         element: <Orders />,
       },
-
+      {
+        path: "kurv",
+        element: <Kurv />,
+      },
+      {
+        path: "payment",
+        element: <Payment />,
+      },
+      {
+        path: "invoice",
+        element: <Invoice />,
+      },
       {
         path: "*",
         element: <NotFound />,
       },
-      
     ],
   },
 ]);

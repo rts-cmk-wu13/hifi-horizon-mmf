@@ -5,7 +5,7 @@ export default function CardHome() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch("https://hifi-api-cpmk.onrender.com/products")
+    fetch("https://mmf-hifi-horizon-api.onrender.com/products")
       .then((res) => res.json())
       .then((data) => {
         console.log("Data fra API:", data);

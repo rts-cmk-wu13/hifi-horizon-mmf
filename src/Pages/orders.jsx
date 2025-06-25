@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ProfileTabs from "./ProfileTabs";
 
 const style = {
@@ -7,7 +7,6 @@ const style = {
     flexDirection: "column",
     backgroundColor: "#fff",
     borderRadius: "8px",
-    boxShadow: "0 0 10px rgba(0,0,0,0.1)",
     width: "78%",
     marginBottom: "2rem",
     maxWidth: 600,
@@ -54,8 +53,22 @@ const style = {
 };
 
 export default function Orders() {
-  // Example data
-  const profile = {
+  const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+    const storedOrders = JSON.parse(localStorage.getItem("orders")) || [];
+    setOrders(storedOrders.reverse()); // Show latest first
+  }, []);
+
+  // Delete order handler
+  const handleDeleteOrder = (id) => {
+    const updatedOrders = orders.filter((order) => order.id !== id);
+    setOrders(updatedOrders);
+    localStorage.setItem("orders", JSON.stringify([...updatedOrders].reverse())); // Save in original order
+  };
+
+  // Optionally, get user info from the latest order
+  const profile = orders[0]?.customerDetails || {
     Name: "Fadi",
     address1: "Peder lykkes vej",
     address2: "",
@@ -65,26 +78,15 @@ export default function Orders() {
     country: "DK",
   };
 
-  const orders = [
-    {
-      ordernumber: "123532532436",
-      date: "02/22/2022",
-      total: "£ 450,00",
-      items: 6,
-    },
-  ];
-
   return (
     <ProfileTabs>
       <div className="genralDiv" style={style.genralDiv}>
         <div style={{ marginBottom: "2em" }}>
-    
           <div style={style.value}>
-             {profile.Name}
-         
+            {profile.fullName || profile.Name}
             <br />
-                 <br />
-               {profile.address1}     <br />
+            <br />
+            {profile.address || profile.address1} <br />
             {profile.address2 && <>{profile.address2}<br /></>}
             {profile.city && <>{profile.city}<br /></>}
             {profile.region && <>{profile.region}<br /></>}
@@ -94,12 +96,41 @@ export default function Orders() {
         </div>
         <div>
           <div style={style.sectionTitle}>Your recent orders</div>
+          {orders.length === 0 && (
+            <div style={style.orderBox}>No orders yet.</div>
+          )}
           {orders.map((order) => (
-            <div key={order.ordernumber} style={style.orderBox}>
-              <div><b>Ordernumber:</b> {order.ordernumber}</div>
-              <div><b>Date:</b> {order.date}</div>
-              <div><b>Total:</b> {order.total}</div>
-              <div><b>Items:</b> {order.items}</div>
+            <div key={order.id} style={style.orderBox}>
+              <div><b>Ordernumber:</b> {order.id}</div>
+              <div>
+                <b>Date:</b>{" "}
+                {order.date
+                  ? new Date(order.date).toLocaleDateString("en-GB", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })
+                  : ""}
+              </div>
+              <div><b>Total:</b> DKK {order.total?.toFixed(2)}</div>
+              <div>
+                <b>Items:</b> {order.cart ? order.cart.reduce((sum, item) => sum + (item.quantity || 1), 0) : 0}
+              </div>
+              <button
+                onClick={() => handleDeleteOrder(order.id)}
+                style={{
+                  marginTop: "10px",
+                  background: "#ff4d4f",
+                  color: "#fff",
+                  border: "none",
+                  borderRadius: "4px",
+                  padding: "6px 16px",
+                  cursor: "pointer",
+                  fontWeight: "bold"
+                }}
+              >
+                Delete Order
+              </button>
             </div>
           ))}
         </div>
@@ -119,7 +150,7 @@ export default function Orders() {
         <div style={{ marginTop: "1em" }}>
           HiFi Horizon (Edinburgh) Ltd is registered in Scotland. No: SC049298. Registered office: 2 Joppa Rd, Edinburgh EH15 2EU
           <br />
-          Designed by WU07 :)
+          Designed by WU07 :
         </div>
       </div>
     </ProfileTabs>
