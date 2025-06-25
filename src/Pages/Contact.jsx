@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const style = {
- h2: {
+  h2: {
     fontSize: "2rem",
     color: "#495464",
     marginBottom: "3rem",
@@ -14,7 +14,7 @@ const style = {
     backgroundColor: "#fff",
     padding: "2rem",
     borderRadius: "8px",
-  
+
     paddung: "2rem",
   },
   button: {
@@ -83,7 +83,16 @@ export default function ContactUs() {
   };
 
   return (
-    <div style={{ maxWidth: 1000, margin: "2rem auto", background: "#fff", padding: 24, borderRadius: 8,  boxShadow: "0 0 10px rgba(0,0,0,0.1)", }}>
+    <div
+      style={{
+        maxWidth: 1000,
+        margin: "2rem auto",
+        background: "#fff",
+        padding: 24,
+        borderRadius: 8,
+        boxShadow: "0 0 10px rgba(0,0,0,0.1)",
+      }}
+    >
       <h1>Get in touch with us</h1>
       <form onSubmit={handleSubmit} style={style.form}>
         <input
