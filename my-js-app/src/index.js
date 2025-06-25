@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3000;
 const saltRounds = 10;
 
 const allowedOrigins = [
-  'http://localhost:5173', // Vite default dev port
+
   'https://hifi-horizon-mmf-1.onrender.com' // your Render static site
 ];
 app.use(cors({
