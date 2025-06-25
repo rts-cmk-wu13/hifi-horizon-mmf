@@ -2,7 +2,6 @@ import React, { Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "./Layout";
 import Spinner from "./components/load"; // Use your Spinner
-import Takside from "./Pages/tak";
 
 // Lazy load all pages
 const Home = React.lazy(() => import("./Pages/Home"));
@@ -139,14 +138,7 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
-      {
-        path: "tak",
-        element: (
-          <Suspense fallback={<Spinner />}>
-            <Takside />
-          </Suspense>
-        ),
-      },
+      
       {
         path: "invoice",
         element: (
