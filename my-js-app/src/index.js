@@ -4,14 +4,16 @@ const fs = require('fs');
 const path = require('path');
 const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer');
-require('dotenv').config(); // Load environment variables from .env file
+require('dotenv').config(); 
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 const saltRounds = 10;
 
 const allowedOrigins = [
-  'https://hifi-horizon-mmf-2.onrender.com'
+  'https://hifi-horizon-mmf-1.onrender.com',
+  'https://hifi-horizon-mmf-2.onrender.com',
+  'http://localhost:5173'
 ];
 app.use(cors({
   origin: allowedOrigins,
@@ -126,19 +128,19 @@ app.post('/api/contact', async (req, res) => {
   const { name, email, message } = req.body;
 
   try {
-    // Nodemailer Transporter
+    
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: process.env.EMAIL_USER, // Your Gmail address from .env
-        pass: process.env.EMAIL_PASS, // Your Gmail App Password from .env
+        user: process.env.EMAIL_USER, 
+        pass: process.env.EMAIL_PASS, 
       },
     });
 
     // Email Options
     const mailOptions = {
       from: email, // Sender's email
-      to: process.env.EMAIL_USER, // Your Gmail address (recipient)
+      to: process.env.EMAIL_USER, 
       subject: `Contact Form Message from ${name}`,
       text: message,
     };
@@ -155,6 +157,13 @@ app.post('/api/contact', async (req, res) => {
 
 app.get('/test-cors', (req, res) => {
   res.json({ message: 'CORS is working!' });
+});
+
+// Optionally, add a catch-all for debugging CORS
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", allowedOrigins.join(", "));
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
 });
 
 // Start Server
