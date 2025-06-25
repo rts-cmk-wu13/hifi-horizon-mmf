@@ -9,16 +9,5 @@
     "city": "vestamager",
     "zipcode": "2300",
     "country": "Denmark"
-  },
-  {
-    "email": "fadialasadi93@gmail.com",
-    "password": "$2b$10$jDKgQzicSQJtyso2PEIsreoTzCtq0k0zkSBrLS5meMaXx0FukcEU2",
-    "fullname": "fadi al assdi",
-    "phone": "+4571862422",
-    "address1": "peder lykkes vej 127",
-    "address2": "",
-    "city": "vestamager",
-    "zipcode": "2300",
-    "country": "DK"
   }
 ]

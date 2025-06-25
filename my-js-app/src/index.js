@@ -11,8 +11,7 @@ const PORT = process.env.PORT || 3000;
 const saltRounds = 10;
 
 const allowedOrigins = [
-
-  'https://hifi-horizon-mmf-1.onrender.com' // your Render static site
+  'https://hifi-horizon-mmf-2.onrender.com'
 ];
 app.use(cors({
   origin: allowedOrigins,
@@ -152,6 +151,10 @@ app.post('/api/contact', async (req, res) => {
     console.error('Error sending email:', error);
     res.status(500).send({ error: 'Failed to send email. Please try again later.' });
   }
+});
+
+app.get('/test-cors', (req, res) => {
+  res.json({ message: 'CORS is working!' });
 });
 
 // Start Server
