@@ -31,8 +31,9 @@ export default function MyProfile() {
   const [editValue, setEditValue] = useState("");
   const [msg, setMsg] = useState("");
   const [user, setUser] = useState(() => {
-    const stored = localStorage.getItem("user");
-    return stored ? JSON.parse(stored) : null;
+    const local = localStorage.getItem("user");
+    const session = sessionStorage.getItem("user");
+    return local ? JSON.parse(local) : session ? JSON.parse(session) : null;
   });
   const email = user ? user.email : null;
   const navigate = useNavigate();
@@ -40,7 +41,7 @@ export default function MyProfile() {
 
   useEffect(() => {
     if (!email) return;
-    fetch(`http://localhost:3000/api/profile?email=${encodeURIComponent(email)}`)
+    fetch(`https://hifi-login-api.onrender.com/api/profile?email=${encodeURIComponent(email)}`)
       .then(res => {
         if (!res.ok) throw new Error("User not found");
         return res.json();
@@ -63,7 +64,7 @@ export default function MyProfile() {
     } else {
       payload = { email: profile.email, [apiField]: editValue };
     }
-    const res = await fetch("/api/profile", {
+    const res = await fetch("https://hifi-login-api.onrender.com/api/profile", {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),

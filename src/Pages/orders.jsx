@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import ProfileTabs from "./ProfileTabs";
-
 const style = {
   genralDiv: {
     display: "flex",
@@ -54,46 +53,39 @@ const style = {
 
 export default function Orders() {
   const [orders, setOrders] = useState([]);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem("user")) || JSON.parse(sessionStorage.getItem("user"));
+    setUser(storedUser);
+
     const storedOrders = JSON.parse(localStorage.getItem("orders")) || [];
-    setOrders(storedOrders.reverse()); // Show latest first
+
+    if (storedUser?.email) {
+      const userOrders = storedOrders.filter(
+        (order) => order.userEmail === storedUser.email
+      );
+      setOrders(userOrders.reverse());
+    } else {
+      setOrders([]);
+    }
   }, []);
 
-  // Delete order handler
+
   const handleDeleteOrder = (id) => {
     const updatedOrders = orders.filter((order) => order.id !== id);
     setOrders(updatedOrders);
-    localStorage.setItem("orders", JSON.stringify([...updatedOrders].reverse())); // Save in original order
-  };
 
-  // Optionally, get user info from the latest order
-  const profile = orders[0]?.customerDetails || {
-    Name: "Fadi",
-    address1: "Peder lykkes vej",
-    address2: "",
-    city: "Amager",
-    region: "København S",
-    zipcode: "2300",
-    country: "DK",
+    const allOrders = JSON.parse(localStorage.getItem("orders")) || [];
+    const filtered = allOrders.filter(
+      (order) => !(order.id === id && order.userEmail === user.email)
+    );
+    localStorage.setItem("orders", JSON.stringify(filtered));
   };
 
   return (
     <ProfileTabs>
       <div className="genralDiv" style={style.genralDiv}>
-        <div style={{ marginBottom: "2em" }}>
-          <div style={style.value}>
-            {profile.fullName || profile.Name}
-            <br />
-            <br />
-            {profile.address || profile.address1} <br />
-            {profile.address2 && <>{profile.address2}<br /></>}
-            {profile.city && <>{profile.city}<br /></>}
-            {profile.region && <>{profile.region}<br /></>}
-            {profile.zipcode && <>{profile.zipcode}<br /></>}
-            {profile.country}
-          </div>
-        </div>
         <div>
           <div style={style.sectionTitle}>Your recent orders</div>
           {orders.length === 0 && (
@@ -114,7 +106,13 @@ export default function Orders() {
               </div>
               <div><b>Total:</b> DKK {order.total?.toFixed(2)}</div>
               <div>
-                <b>Items:</b> {order.cart ? order.cart.reduce((sum, item) => sum + (item.quantity || 1), 0) : 0}
+                <b>Items:</b>{" "}
+                {order.cart
+                  ? order.cart.reduce(
+                      (sum, item) => sum + (item.quantity || 1),
+                      0
+                    )
+                  : 0}
               </div>
               <button
                 onClick={() => handleDeleteOrder(order.id)}
@@ -126,7 +124,7 @@ export default function Orders() {
                   borderRadius: "4px",
                   padding: "6px 16px",
                   cursor: "pointer",
-                  fontWeight: "bold"
+                  fontWeight: "bold",
                 }}
               >
                 Delete Order
@@ -135,6 +133,7 @@ export default function Orders() {
           ))}
         </div>
       </div>
+
       {/* Footer */}
       <div style={style.footer}>
         <div>

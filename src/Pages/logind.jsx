@@ -83,14 +83,18 @@ export default function Login() {
     e.preventDefault();
     setMsg("");
     try {
-      const res = await fetch("/api/login", {
+      const res = await fetch("https://hifi-login-api.onrender.com/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
       if (res.ok) {
         const user = await res.json(); // Expecting { name, email, ... }
-        localStorage.setItem("user", JSON.stringify(user));
+        if (form.remember) {
+          localStorage.setItem("user", JSON.stringify(user));
+        } else {
+          sessionStorage.setItem("user", JSON.stringify(user));
+        }
         window.dispatchEvent(new Event("userUpdated")); // Notify header to update
         window.location.href = "/myprofile";
       } else {
