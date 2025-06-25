@@ -22,7 +22,8 @@ export default function Shop() {
     // Fetch all products
     useEffect(() => {
         setLoading(true);
-        fetch("http://localhost:4000/products")
+        const API_URL = import.meta.env.VITE_API_URL;
+        fetch(`${API_URL}/products`)
             .then((res) => res.json())
             .then((data) => {
                 if (data.results) {

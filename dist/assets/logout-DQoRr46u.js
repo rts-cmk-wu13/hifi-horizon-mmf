@@ -1,1 +1,0 @@
-import{b as e,j as n}from"./index-Bs8CB3Fj.js";function a(){const o=e(),t=()=>{localStorage.removeItem("user"),o("/login")};return n.jsx("button",{onClick:t,style:{padding:"10px",borderRadius:"4px",color:"#fff",border:"none"},children:"Logout"})}export{a as default};

@@ -7,6 +7,8 @@ import Gold from "/icons/gold.svg";
 import { GoDotFill } from "react-icons/go";
 import { useNavigate } from "react-router-dom"; // Add this import
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export default function Shopdetails() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
@@ -14,7 +16,7 @@ export default function Shopdetails() {
   const navigate = useNavigate(); // For optional navigation or feedback
 
   useEffect(() => {
-    fetch(`https://hifi-api-cpmk.onrender.com/products/${id}`)
+    fetch(`${API_URL}/products/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setProduct(data);

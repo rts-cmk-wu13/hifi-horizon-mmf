@@ -78,6 +78,8 @@ export default function Orders() {
     country: "DK",
   };
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   return (
     <ProfileTabs>
       <div className="genralDiv" style={style.genralDiv}>

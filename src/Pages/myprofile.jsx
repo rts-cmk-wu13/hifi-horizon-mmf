@@ -40,7 +40,8 @@ export default function MyProfile() {
 
   useEffect(() => {
     if (!email) return;
-    fetch(`http://localhost:3000/api/profile?email=${encodeURIComponent(email)}`)
+    const API_URL = import.meta.env.VITE_API_URL;
+    fetch(`${API_URL}/api/profile?email=${encodeURIComponent(email)}`)
       .then(res => {
         if (!res.ok) throw new Error("User not found");
         return res.json();
@@ -63,7 +64,7 @@ export default function MyProfile() {
     } else {
       payload = { email: profile.email, [apiField]: editValue };
     }
-    const res = await fetch("/api/profile", {
+    const res = await fetch(`${API_URL}/api/profile`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
